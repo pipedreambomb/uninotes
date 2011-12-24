@@ -2,36 +2,6 @@
 class Subject extends AppModel {
 	var $name = 'Subject';
 	var $displayField = 'name';
-	var $validate = array(
-		'name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'maxlength' => array(
-				'rule' => array('maxlength', 200),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'organization_id' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
@@ -57,6 +27,40 @@ class Subject extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		)
+	);
+
+
+	var $hasAndBelongsToMany = array(
+		'Link' => array(
+			'className' => 'Link',
+			'joinTable' => 'links_subjects',
+			'foreignKey' => 'subject_id',
+			'associationForeignKey' => 'link_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'User' => array(
+			'className' => 'User',
+			'joinTable' => 'users_subjects',
+			'foreignKey' => 'subject_id',
+			'associationForeignKey' => 'user_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
 
