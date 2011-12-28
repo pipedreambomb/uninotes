@@ -6,15 +6,10 @@
 			<?php echo $link['Link']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Url'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>>Link:</dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $link['Link']['url']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Text'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $link['Link']['text']; ?>
-			&nbsp;
+                        <?php echo $this->Html->link($link['Link']['text'], $link['Link']['url'], array('class' => 'button', 'target' => '_blank')); ?>
+			&nbsp;  
 		</dd>
 	</dl>
 </div>
