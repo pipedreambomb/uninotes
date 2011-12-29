@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 24, 2011 at 11:21 PM
+-- Generation Time: Dec 29, 2011 at 08:01 PM
 -- Server version: 5.1.58
 -- PHP Version: 5.3.6-13ubuntu3.3
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `url` varchar(2000) NOT NULL,
   `text` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `links`
@@ -60,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `links` (
 
 INSERT INTO `links` (`id`, `url`, `text`) VALUES
 (1, 'http://www.cardiff.ac.uk', 'Cardiff University home page'),
-(2, 'http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=a.d.preece', 'Tom''s contact page');
+(2, 'http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=a.d.preece', 'Tom''s contact page'),
+(3, 'https://docs.google.com/document/d/1OWtfDMAmKoi3SuZYMgQcBWVjIK94S3hHkS6nh3maKoo/edit', 'GDoc #1');
 
 -- --------------------------------------------------------
 
@@ -112,14 +113,15 @@ CREATE TABLE IF NOT EXISTS `links_subjects` (
   `link_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `links_subjects`
 --
 
 INSERT INTO `links_subjects` (`id`, `link_id`, `subject_id`) VALUES
-(2, 2, 1);
+(2, 2, 1),
+(3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -188,15 +190,18 @@ INSERT INTO `subjects` (`id`, `name`, `organization_id`) VALUES
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
+  `password` char(40) NOT NULL,
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`) VALUES
-(1, 'test');
+INSERT INTO `users` (`id`, `username`, `password`, `active`, `email`) VALUES
+(4, 'jambo81', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'violentfemme@gmail.com');
 
 -- --------------------------------------------------------
 

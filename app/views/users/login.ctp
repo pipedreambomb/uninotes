@@ -1,12 +1,11 @@
 <?php
-echo $this->Form->create(array('action'=>'login'));
+
+echo $this->Form->create(array('action' => 'login'));
 echo $this->Form->inputs(array(
-	
-'legend' => 'Login',
-	
-'username',
-	
-'password'
+    'legend' => 'Login',
+    'username' => array('label' => 'Username / Email'),
+    'password',
+    'remember' => array('type' => 'checkbox', 'label' => 'Remember me')
 ));
 echo $this->Form->end('Login');
 ?>
