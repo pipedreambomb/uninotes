@@ -3,6 +3,10 @@
 class UsersController extends AppController {
 
     var $name = 'Users';
+    var $components = array('Recaptcha.Captcha' => array(
+            'private_key' => '6LeewcsSAAAAAI2idDck79tLkRomGdTcyyiEaSUQ',
+            'public_key' => '6LeewcsSAAAAALlyb2fjylNG-7Yl-_16aXXL3OPC'));
+    var $helpers = array('Recaptcha.CaptchaTool');
 
     public function beforeFilter() {
 
@@ -15,16 +19,20 @@ class UsersController extends AppController {
 
         if (!empty($this->data)) {
 
-            $this->User->create();
-
-            if ($this->User->save($this->data)) {
-
-                $this->Session->setFlash('User created!');
-
-                $this->redirect(array('action' => 'login'));
+            if (!$this->Captcha->validate()) {
+                $this->Session->setFlash('CAPTCHA failed, please try again.');
             } else {
+                $this->User->create();
 
-                $this->Session->setFlash('Please correct the errors');
+                if ($this->User->save($this->data)) {
+
+                    $this->Session->setFlash('User created!');
+
+                    $this->redirect(array('action' => 'login'));
+                } else {
+
+                    $this->Session->setFlash('Please correct the errors');
+                }
             }
         }
     }
@@ -55,7 +63,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash($this->Auth->loginError, $this->Auth->flashElement, array(), 'auth');
             }
         }
-   
+
         if (!empty($this->data)) {
             $userId = $this->Auth->user('id');
             if (!empty($userId)) {
@@ -77,10 +85,10 @@ class UsersController extends AppController {
     }
 
     public function logout() {
-if ($this->Cookie->read('User') != null) {
-	
-$this->Cookie->delete('User');
-}
+        if ($this->Cookie->read('User') != null) {
+
+            $this->Cookie->delete('User');
+        }
 
         $this->redirect($this->Auth->logout());
     }

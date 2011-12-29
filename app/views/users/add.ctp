@@ -7,5 +7,6 @@ echo $this->Form->inputs(array(
     'username',
     'password'
 ));
+echo $captchaTool->show();
 echo $this->Form->end('Submit');
 ?>
