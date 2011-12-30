@@ -3,6 +3,11 @@ class LinksController extends AppController {
 
 	var $name = 'Links';
 
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Auth->allow('index', 'view');
+        }
+        
 	function index() {
 		$this->Link->recursive = 0;
 		$this->set('links', $this->paginate());
