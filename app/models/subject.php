@@ -2,7 +2,10 @@
 class Subject extends AppModel {
 	var $name = 'Subject';
 	var $displayField = 'name';
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+        var $actsAs = 'ExtendAssociations'; 
+
+        //The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
 		'Organization' => array(
@@ -63,5 +66,5 @@ class Subject extends AppModel {
 			'insertQuery' => ''
 		)
 	);
-
+        
 }
