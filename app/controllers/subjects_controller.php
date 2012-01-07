@@ -80,22 +80,6 @@ class SubjectsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         $userId = $this->Auth->user('id');
-        //debug($this->Subject->User);
-        if ($this->Subject->User->followSubject($userId, $id)) {
-            $this->Session->setFlash(__('Subject followed', true));
-            $this->redirect(array('action' => 'view', $id));
-        }
-        $this->Session->setFlash(__('Subject was not followed', true));
-        $this->redirect(array('action' => 'index'));
-    }
-    function follow($id = null) {
-
-        if (!$id) {
-            $this->Session->setFlash(__('Invalid id for subject', true));
-            $this->redirect(array('action' => 'index'));
-        }
-        $userId = $this->Auth->user('id');
-        
         if ($this->Subject->User->followSubject($userId, $id)) {
             $this->Session->setFlash(__('Subject followed', true));
             $this->redirect(array('action' => 'view', $id));
