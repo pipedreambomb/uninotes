@@ -75,7 +75,7 @@ class User extends AppModel {
         )
     );
 
-        public function followSubject($userId, $subjectId) {
-            return $this->habtmAdd('Subject', $userId, $subjectId);
-        }
+    public function follow($modelName, $userId, $subjectId) {
+        return $this->habtmAdd($modelName, $userId, $subjectId);
+    }
 }

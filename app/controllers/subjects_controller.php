@@ -80,7 +80,7 @@ class SubjectsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         $userId = $this->Auth->user('id');
-        if ($this->Subject->User->followSubject($userId, $id)) {
+        if ($this->Subject->User->follow('Subject', $userId, $id)) {
             $this->Session->setFlash(__('Subject followed', true));
             $this->redirect(array('action' => 'view', $id));
         }
