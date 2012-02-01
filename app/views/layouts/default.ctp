@@ -22,13 +22,14 @@
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
-            <?php __('CakePHP: the rapid development php framework:'); ?>
+            <?php __('UniNot.es: One place for everyone\'s notes!'); ?>
             <?php echo $title_for_layout; ?>
         </title>
         <?php
         echo $this->Html->meta('icon');
 
         echo $this->Html->css('cake.generic');
+        echo $this->Html->css('uninotes');
 
         echo $scripts_for_layout;
         ?>
@@ -36,22 +37,41 @@
     <body>
         <div id="container">
             <div id="header">
-                <h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
+                <h1>
+    <?php echo $this->Html->image("logo.png", array(
+    "alt" => "UniNot.es logo",
+    'url' => array('controller' => 'pages', 'action' => 'display', 'home')
+    )); ?>
+
+                </h1>
+
+                <div id="navlinks">
+                    <ul class="inline-headings">
+                        <li>
+                            <? echo $this->Html->link('Organizations', array('controller' => 'organizations', 'action' => 'index'));?>
+                        </li>
+                        <li>
+                            <? echo $this->Html->link('Subjects', array('controller' => 'subjects', 'action' => 'index'));?>
+                        </li>
+                        <li>
+                            <? echo $this->Html->link('Events', array('controller' => 'events', 'action' => 'index'));?>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="content">
+                
+                <div id="login" style ="float:right">
                 <?php if (!empty($user)) { ?>
                     Welcome back <?php echo $user['username']; ?>!
 
                     <?php
-                    echo $this->Html->link('Log out', array('plugin' => null,
-                        'admin' => false, 'controller' => 'users', 'action' => 'logout'));
+                    echo $this->Html->link('Log out', array('controller' => 'users', 'action' => 'logout'));
                 } else {
-
-                    echo $this->Html->link('Log in', array('plugin' => null,
-                        'admin' => false, 'controller' => 'users', 'action' => 'login'));
+                    echo $this->Html->link('Log in', array('controller' => 'users', 'action' => 'login'));
                 }
                 ?>
-
-            </div>
-            <div id="content">
+                </div>
 
                 <?php echo $this->Session->flash(); ?>
                 <?php echo $this->Session->flash('auth'); ?>

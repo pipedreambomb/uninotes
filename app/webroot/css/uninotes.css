@@ -1,0 +1,35 @@
+/* 
+    Document   : uninotes
+    Created on : 01-Feb-2012, 20:16:33
+    Author     : g
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+#header a {
+	color: #FFF !important;
+}
+
+#header h1 {
+	background-image: none;
+}
+
+#content h1 {
+	font-size: large
+}
+
+ul.inline-headings{
+  display:inline-block;
+}
+ul.inline-headings li {
+    display: inline-block;
+}
