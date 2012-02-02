@@ -5,14 +5,14 @@ class AppController extends Controller {
     public $components = array(
         'Auth' => array(
             'authorize' => 'controller',
-            'autoRedirect' => false,
-            'loginRedirect' => array(
-                'admin' => false,
-                'controller' => 'users',
-                'action' => 'dashboard'
-            ),
+            'autoRedirect' => true,
             'loginError' => 'Invalid account specified',
-            'authError' => 'You don\'t have the right permission'
+	    'authError' => 'You must be logged in to access this area',
+	    'logoutRedirect' => array(
+		'admin' => false,
+		'controller' => 'pages',
+		'action' => 'display', 'home'
+	    )
         ),
         'Cookie',
         'Session'

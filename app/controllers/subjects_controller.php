@@ -2,7 +2,8 @@
 
 class SubjectsController extends AppController {
 
-    var $name = 'Subjects';
+   	var $name = 'Subjects';
+	var $helpers = array('lists');
 
     public function beforeFilter() {
         parent::beforeFilter();

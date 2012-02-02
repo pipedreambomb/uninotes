@@ -22,7 +22,7 @@
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
-            <?php __('UniNot.es: One place for everyone\'s notes!'); ?>
+            <?php __('UniNot.es: One place for everyone\'s notes -- '); ?>
             <?php echo $title_for_layout; ?>
         </title>
         <?php
@@ -39,10 +39,11 @@
             <div id="header">
                 <h1>
     <?php echo $this->Html->image("logo.png", array(
-    "alt" => "UniNot.es logo",
-    'url' => array('controller' => 'pages', 'action' => 'display', 'home')
+    'alt' => "UniNot.es logo",
+    'url' => array('controller' => 'pages', 'action' => 'display', 'home'),
+    'id' => 'logo'
     )); ?>
-
+- one place for everyone's notes&trade;
                 </h1>
 
                 <div id="navlinks">

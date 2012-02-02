@@ -1,6 +1,8 @@
-<h1>Welcome to UniNot.es</h1>
-<p>Come and take a look around, try one of the headings above to get started.</p>
+<div id="home">
+	<h1>Welcome to UniNot.es!</h1>
 
-<p>A site will be here soon that will aid collaboration between students using live lecture note sessions saved for future revision. You'll be able to find such sessions by organization, location or via people you know also using the site.</p>  
+	<p>This site is currently work-in-progress - and you can help by clicking around and <a href="mailto:g@georgenixon.co.uk">telling me</a> if something goes wrong! The eventual goal of UniNot.es is to aid collaboration between students, conference attendees and academics, using live event-based note sessions saved for future revision. Hopefully by May you will be able to find such sessions by organization, location or via people you know also using the site, and learn and share together.</p>  
 
-<p>This site represents the output of a final-year project by George Nixon of Cardiff University, begun October 2011. All rights reserved... for now. The source code will be open-sourced in summer 2012, but for pesky university reasons viz. collaboration, or in their parlance, plagiarism, it'll be off-limits until then. Suggestions welcome, however.</p>
+	<p>What you will see at this address is the current state of a final-year project by <a href="http://georgenixon.co.uk">George Nixon</a> of <a href="http://cardiff.ac.uk">Cardiff University</a>, begun October 2011. All rights reserved... for now. The source code will be open-sourced in summer 2012, but for pesky university reasons viz. collaboration, or in their parlance, plagiarism, it'll be off-limits until then. <a href="mailto:g@georgenixon.co.uk">Suggestions welcome</a>, however.</p>
+	
+</div>

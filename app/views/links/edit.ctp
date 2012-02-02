@@ -5,11 +5,11 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('url');
-		echo $this->Form->input('text');
-		echo $this->Form->input('Event');
-		echo $this->Form->input('Organization');
-		echo $this->Form->input('Subject');
-		echo $this->Form->input('User');
+		echo $this->Form->input('text', array('label' => 'Label (optional)'));
+		//echo $this->Form->input('Event');
+		//echo $this->Form->input('Organization');
+		//echo $this->Form->input('Subject');
+		//echo $this->Form->input('User');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

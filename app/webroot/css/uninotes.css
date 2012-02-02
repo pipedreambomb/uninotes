@@ -23,6 +23,10 @@ root {
 	background-image: none;
 }
 
+#header img#logo {
+	margin-right: 2em;
+}
+
 #header #navlinks {
 	text-align: left;
 	float: left;
@@ -41,6 +45,23 @@ root {
 
 #content h1 {
 	font-size: large
+}
+
+#content .related.links {
+	width: 50%;
+}
+
+#content #home {
+	margin: 0 auto;
+	width: 60%;
+}
+
+#content #home h1 { 
+	text-align: center;
+}
+
+#content #home p { 
+	padding-top: 1em;
 }
 
 ul.inline-headings{

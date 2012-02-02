@@ -19,43 +19,9 @@
 		<li><?php echo $this->Html->link(__('Edit Subject', true), array('action' => 'edit', $subject['Subject']['id'])); ?> </li>
 	</ul>
 </div>
-<div class="related">
+<div class="related links">
 	<h3><?php __('Related Links');?></h3>
-	<?php if (!empty($subject['Link'])):?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Url'); ?></th>
-		<th><?php __('Text'); ?></th>
-		<th class="actions"><?php __('Actions');?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($subject['Link'] as $link):
-			$class = null;
-			if ($i++ % 2 == 0) {
-				$class = ' class="altrow"';
-			}
-		?>
-		<tr<?php echo $class;?>>
-			<td><?php echo $link['id'];?></td>
-			<td><?php echo $link['url'];?></td>
-			<td><?php echo $link['text'];?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'links', 'action' => 'view', $link['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'links', 'action' => 'edit', $link['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'links', 'action' => 'delete', $link['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $link['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Link', true), array('controller' => 'links', 'action' => 'add'));?> </li>
-		</ul>
-	</div>
+	<?php echo $this->lists->links($subject['Link']); ?>
 </div>
 <div class="related">
 	<h3><?php __('Related Events');?></h3>
@@ -98,45 +64,12 @@
 </div>
 <div class="related">
 	<h3><?php __('Users following this subject');?></h3>
-	<?php if (!empty($subject['User'])):?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Username'); ?></th>
-		<th><?php __('Password'); ?></th>
-		<th><?php __('Active'); ?></th>
-		<th><?php __('Email'); ?></th>
-		<th class="actions"><?php __('Actions');?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($subject['User'] as $user):
-			$class = null;
-			if ($i++ % 2 == 0) {
-				$class = ' class="altrow"';
-			}
-		?>
-		<tr<?php echo $class;?>>
-			<td><?php echo $user['id'];?></td>
-			<td><?php echo $user['username'];?></td>
-			<td><?php echo $user['password'];?></td>
-			<td><?php echo $user['active'];?></td>
-			<td><?php echo $user['email'];?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'users', 'action' => 'delete', $user['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
+	<? echo $this->lists->users($subject['User']); ?>
 	<div class="actions">
 		<ul>
 			<li><?php 
-                        echo $this->Html->link(__('Follow this subject', true), 
-                                array('action' => 'follow', $subject['Subject']['id']));?> </li>
-		</ul>
-	</div>
+				echo $this->Html->link(__('Follow this subject', true), array('action' => 'follow', $subject['Subject']['id']));?> 
+			</li>
+                </ul>
+        </div>
 </div>
