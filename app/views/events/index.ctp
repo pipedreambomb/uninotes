@@ -2,11 +2,10 @@
 	<h2><?php __('Events');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
+			<th><?php //echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('datetime');?></th>
 			<th><?php echo $this->Paginator->sort('subject_id');?></th>
-			<th><?php echo $this->Paginator->sort('textual_notes');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -18,13 +17,12 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $event['Event']['id']; ?>&nbsp;</td>
+		<td><?php //echo $event['Event']['id']; ?>&nbsp;</td>
 		<td><?php echo $event['Event']['name']; ?>&nbsp;</td>
 		<td><?php echo $event['Event']['datetime']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($event['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $event['Subject']['id'])); ?>
 		</td>
-		<td><?php echo $event['Event']['textual_notes']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $event['Event']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $event['Event']['id'])); ?>
@@ -51,7 +49,5 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Event', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Subjects', true), array('controller' => 'subjects', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Subject', true), array('controller' => 'subjects', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

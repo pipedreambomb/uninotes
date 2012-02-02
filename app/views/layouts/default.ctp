@@ -58,10 +58,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div id="content">
-                
-                <div id="login" style ="float:right">
+                <div id="login">
                 <?php if (!empty($user)) { ?>
                     Welcome back <?php echo $user['username']; ?>!
 
@@ -72,6 +69,9 @@
                 }
                 ?>
                 </div>
+            </div>
+            <div id="content">
+                
 
                 <?php echo $this->Session->flash(); ?>
                 <?php echo $this->Session->flash('auth'); ?>

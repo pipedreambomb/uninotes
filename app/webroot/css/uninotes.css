@@ -23,6 +23,22 @@ root {
 	background-image: none;
 }
 
+#header #navlinks {
+	text-align: left;
+	float: left;
+	width: 49%;
+}
+
+#header #login {
+	text-align: right;
+	float: right;
+	width: 49%;
+}
+
+#content {
+	margin-top: 1em;
+}
+
 #content h1 {
 	font-size: large
 }

@@ -2,7 +2,6 @@
 	<h2><?php __('Organizations');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -15,7 +14,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $organization['Organization']['id']; ?>&nbsp;</td>
 		<td><?php echo $organization['Organization']['name']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $organization['Organization']['id'])); ?>
@@ -43,7 +41,5 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Organization', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Subjects', true), array('controller' => 'subjects', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Link', true), array('controller' => 'links', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
