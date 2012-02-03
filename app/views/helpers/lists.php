@@ -18,7 +18,7 @@ class ListsHelper extends Helper {
 					$class = ' class="altrow"';
 				}
 			$out .= "<tr" . $class . ">" 
-				. "<td>" . $this->Html->link($link['text'], $link['url']) . "</td>"
+				. "<td>" . $this->Html->link($link['text'], array('controller' => 'links', 'action' => 'go', $link['id'])) . "</td>"
 				. "<td class=\"actions\">";
 			$out .= $this->Html->link(__('Edit', true), array('controller' => 'links', 'action' => 'edit', $link['id']));
 				$out .= $this->Html->link(__('Delete', true), array('controller' => 'links', 'action' => 'delete', $link['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $link['id']));
@@ -48,11 +48,12 @@ class ListsHelper extends Helper {
 					$class = ' class=\"altrow\"';
 				}
 				$out .= sprintf("<tr%s>", $class);
-				$this->Html->link(__($user['username'], true), array('controller' => 'users', 'action' => 'view', $user['id'])); 
+				$out .= $this->Html->link(__($user['username'], true), array('controller' => 'users', 'action' => 'view', $user['id'])); 
 				$out .= "</tr>";
 			}
 			$out .= "</table>";
 		}
+		return $out;
 	
 	}
 }

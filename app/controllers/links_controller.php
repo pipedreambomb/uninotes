@@ -3,9 +3,11 @@ class LinksController extends AppController {
 
 	var $name = 'Links';
 
+    	var $helpers = array('Js' => array('Jquery'));
+
         public function beforeFilter() {
             parent::beforeFilter();
-            $this->Auth->allow('index', 'view');
+            $this->Auth->allow('index', 'view', 'go');
         }
         
 	function index() {
@@ -73,4 +75,13 @@ class LinksController extends AppController {
 		$this->Session->setFlash(__('Link was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function go($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid link', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('link', $this->Link->read(null, $id));
+	}
+
 }

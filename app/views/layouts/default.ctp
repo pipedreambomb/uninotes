@@ -43,7 +43,7 @@
     'url' => array('controller' => 'pages', 'action' => 'display', 'home'),
     'id' => 'logo'
     )); ?>
-- one place for everyone's notes&trade;
+- one place for everyone's notes &trade;
                 </h1>
 
                 <div id="navlinks">
