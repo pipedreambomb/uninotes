@@ -16,11 +16,11 @@
 	</ul>
 </div>
 <div class="related links">
-	<h3><?php __('Related Links');?></h3>
+	<h3><?php __('Links');?></h3>
 	<? echo $this->lists->links($organization['Link']); ?>
 </div>
 <div class="related">
-	<h3><?php __('Related Subjects');?></h3>
+	<h3><?php __('Subjects');?></h3>
 	<?php if (!empty($organization['Subject'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -36,9 +36,9 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $subject['name'];?></td>
+				
+			<td><?php echo $this->Html->link(__($subject['name'], true), array('controller' => 'subjects', 'action' => 'view', $subject['id'])); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'subjects', 'action' => 'view', $subject['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'subjects', 'action' => 'edit', $subject['id'])); ?>
 				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'subjects', 'action' => 'delete', $subject['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subject['id'])); ?>
 			</td>

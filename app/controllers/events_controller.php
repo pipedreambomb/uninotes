@@ -2,6 +2,7 @@
 class EventsController extends AppController {
 
 	var $name = 'Events';
+	var $helpers = array('lists');
 
         public function beforeFilter() {
             parent::beforeFilter();

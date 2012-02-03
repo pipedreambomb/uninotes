@@ -5,6 +5,7 @@ class ListsHelper extends Helper {
 
 	function links($links) {
 		$out = "";
+
 		if (!empty($links)) {
 			$out .= "<table cellpadding = \"0\" cellspacing = \"0\">
 				<tr>
@@ -13,12 +14,15 @@ class ListsHelper extends Helper {
 				</tr>";
 			$i = 0;
 			foreach ($links as $link) {
+				// Used to display url if name is empty
+				$displayText = $link['text'] == null ? $link['url'] : $link['text'];
+				
 				$class = null;
 				if ($i++ % 2 == 0) {
 					$class = ' class="altrow"';
 				}
 			$out .= "<tr" . $class . ">" 
-				. "<td>" . $this->Html->link($link['text'], array('controller' => 'links', 'action' => 'go', $link['id'])) . "</td>"
+				. "<td>" . $this->Html->link($displayText, array('controller' => 'links', 'action' => 'go', $link['id'])) . "</td>"
 				. "<td class=\"actions\">";
 			$out .= $this->Html->link(__('Edit', true), array('controller' => 'links', 'action' => 'edit', $link['id']));
 				$out .= $this->Html->link(__('Delete', true), array('controller' => 'links', 'action' => 'delete', $link['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $link['id']));

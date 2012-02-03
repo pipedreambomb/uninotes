@@ -14,9 +14,10 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $organization['Organization']['name']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link(__($organization['Organization']['name'], true), array('action' => 'view', $organization['Organization']['id'])); ?>
+		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $organization['Organization']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $organization['Organization']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $organization['Organization']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $organization['Organization']['id'])); ?>
 		</td>

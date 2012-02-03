@@ -9,17 +9,16 @@ class LinksController extends AppController {
             parent::beforeFilter();
             $this->Auth->allow('index', 'view', 'go');
         }
-        
-	function index() {
-		$this->Link->recursive = 0;
-		$this->set('links', $this->paginate());
+
+	private function checkExists($id) {
+		if (!$id || !$this->Link->exists($id)) {
+			$this->Session->setFlash(__('Invalid link', true));
+			$this->go404();
+		}
 	}
 
 	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid link', true));
-			$this->redirect(array('action' => 'index'));
-		}
+		$this->checkExists($id);
 		$this->set('link', $this->Link->read(null, $id));
 	}
 
@@ -28,7 +27,7 @@ class LinksController extends AppController {
 			$this->Link->create();
 			if ($this->Link->save($this->data)) {
 				$this->Session->setFlash(__('The link has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->goHome();	
 			} else {
 				$this->Session->setFlash(__('The link could not be saved. Please, try again.', true));
 			}
@@ -41,14 +40,12 @@ class LinksController extends AppController {
 	}
 
 	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid link', true));
-			$this->redirect(array('action' => 'index'));
-		}
+		$this->checkExists($id);
+
 		if (!empty($this->data)) {
 			if ($this->Link->save($this->data)) {
 				$this->Session->setFlash(__('The link has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->goHome();
 			} else {
 				$this->Session->setFlash(__('The link could not be saved. Please, try again.', true));
 			}
@@ -64,23 +61,17 @@ class LinksController extends AppController {
 	}
 
 	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for link', true));
-			$this->redirect(array('action'=>'index'));
-		}
+		$this->checkExists($id);
 		if ($this->Link->delete($id)) {
 			$this->Session->setFlash(__('Link deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->goHome();
 		}
 		$this->Session->setFlash(__('Link was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		$this->goHome();
 	}
 	
 	function go($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid link', true));
-			$this->redirect(array('action' => 'index'));
-		}
+		$this->checkExists($id);
 		$this->set('link', $this->Link->read(null, $id));
 	}
 

@@ -17,14 +17,13 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php //echo $event['Event']['id']; ?>&nbsp;</td>
-		<td><?php echo $event['Event']['name']; ?>&nbsp;</td>
+		<td><?php echo $this->Html->link(__($event['Event']['name'], true), array('action' => 'view', $event['Event']['id'])); ?>&nbsp;</td>
 		<td><?php echo $event['Event']['datetime']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($event['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $event['Subject']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $event['Event']['id'])); ?>
+			
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $event['Event']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $event['Event']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $event['Event']['id'])); ?>
 		</td>

@@ -6,7 +6,7 @@ class Link extends AppModel {
 		'url' => array(
 			'url' => array(
 				'rule' => array('url'),
-				//'message' => 'Your custom message here',
+				'message' => 'Must be a valid URL (e.g. \'http://www.example.com\')',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

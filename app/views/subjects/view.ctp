@@ -20,18 +20,17 @@
 	</ul>
 </div>
 <div class="related links">
-	<h3><?php __('Related Links');?></h3>
+	<h3><?php __('Links');?></h3>
 	<?php echo $this->lists->links($subject['Link']); ?>
 </div>
 <div class="related">
-	<h3><?php __('Related Events');?></h3>
+	<h3><?php __('Events');?></h3>
 	<?php if (!empty($subject['Event'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php __('Name'); ?></th>
-<!--TODO: nicer date formats-->
+		<!--TODO: nicer date formats-->
 		<th><?php __('Datetime'); ?></th>
-		<th><?php //__('Textual Notes'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -43,11 +42,10 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $event['name'];?></td>
+			<td><?php echo $this->Html->link(__($event['name'], true), array('controller' => 'events', 'action' => 'view', $event['id'])); ?></td>
 			<td><?php echo $event['datetime'];?></td>
 			<td><?php //echo $event['textual_notes'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'events', 'action' => 'view', $event['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'events', 'action' => 'edit', $event['id'])); ?>
 				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'events', 'action' => 'delete', $event['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $event['id'])); ?>
 			</td>

@@ -67,6 +67,14 @@ class AppController extends Controller {
         return true;
     }
 
+	public function go404() {
+		$this->redirect(array('controller' => 'pages', 'action' => 'display', '404'));
+	}
+
+	public function goHome() {
+		$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
+	}
+
 }
 ?>
 
