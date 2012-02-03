@@ -3,7 +3,7 @@ class ListsHelper extends Helper {
 
 	var $helpers = array('Html');
 
-	function links($links) {
+	function links($links, $type, $id) {
 		$out = "";
 
 		if (!empty($links)) {
@@ -34,7 +34,7 @@ class ListsHelper extends Helper {
 		}
 	$out .= "<div class=\"actions\">
 		<ul>
-			<li>" . $this->Html->link(__('New Link', true), array('controller' => 'links', 'action' => 'add')) . "</li>
+			<li>" . $this->Html->link(__('New Link', true), array('controller' => 'links', 'action' => 'add', $type, $id))  . "</li>
 		</ul>
 		</div>";
 		return $out;

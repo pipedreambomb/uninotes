@@ -17,7 +17,7 @@
 </div>
 <div class="related links">
 	<h3><?php __('Links');?></h3>
-	<? echo $this->lists->links($organization['Link']); ?>
+	<? echo $this->lists->links($organization['Link'], 'Organization', $organization['Organization']['id'] ); ?>
 </div>
 <div class="related">
 	<h3><?php __('Subjects');?></h3>

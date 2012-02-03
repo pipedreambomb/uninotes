@@ -86,5 +86,35 @@ class Link extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+/*
+	function beforeSave($options) {
+	
+		debug($this->data);
 
+		//don't save while I'm still testing
+		return false;
+	}
+ */
+	function getLinkTarget($type, $id) {
+		switch ($type) {
+		case "Event":
+			$target = $this->Event->find($id);
+			break;
+		case "Organization":
+			$target = $this->Organization->findById($id);
+			break;
+		case "Subject":
+			$target = $this->Subject->find($id);
+			break;
+		case "User": 
+			$target = $this->User->find($id);
+			break;
+		default:
+			$this->Session->setFlash("Unexpected target type");
+			break;
+		}
+		$target = $target[$type];
+		$target['type'] = $type;
+		return $target;
+	}
 }

@@ -1,11 +1,6 @@
 <div class="subjects view">
-<h2><?php  __('Subject');?></h2>
+<h2><?php echo 'Subject - ' . $subject['Subject']['name'];?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $subject['Subject']['name']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Organization'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($subject['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $subject['Organization']['id'])); ?>
@@ -21,7 +16,7 @@
 </div>
 <div class="related links">
 	<h3><?php __('Links');?></h3>
-	<?php echo $this->lists->links($subject['Link']); ?>
+	<?php echo $this->lists->links($subject['Link'], 'Subject', $subject['Subject']['id']); ?>
 </div>
 <div class="related">
 	<h3><?php __('Events');?></h3>

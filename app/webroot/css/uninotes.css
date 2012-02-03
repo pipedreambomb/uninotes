@@ -70,3 +70,12 @@ ul.inline-headings{
 ul.inline-headings li {
     display: inline-block;
 }
+
+/*Overide built-in positioning of Actions navbar*/
+div.form, div.index, div.view {
+	float: left !important;
+}
+
+div.actions {
+	float: right !important;
+}
