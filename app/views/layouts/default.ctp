@@ -67,6 +67,8 @@
                     echo $this->Html->link('Log out', array('controller' => 'users', 'action' => 'logout'));
                 } else {
                     echo $this->Html->link('Log in', array('controller' => 'users', 'action' => 'login'));
+		    echo " or ";
+                    echo $this->Html->link('Sign up!', array('controller' => 'users', 'action' => 'add'));
                 }
                 ?>
                 </div>

@@ -12,7 +12,7 @@ class UsersController extends AppController {
 
         parent::beforeFilter();
 
-        $this->Auth->allow('add');
+        $this->Auth->allow('add', 'view');
     }
 
     public function add() {
@@ -84,7 +84,7 @@ class UsersController extends AppController {
         }
     }
 
-    public function logout() {
+    function logout() {
         if ($this->Cookie->read('User') != null) {
 
             $this->Cookie->delete('User');
@@ -93,8 +93,11 @@ class UsersController extends AppController {
         $this->redirect($this->Auth->logout());
     }
 
-    public function dashboard() {
-        
-    }
-
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid user', true));
+			$this->goHome();
+		}
+		$this->set('userProfile', $this->User->read(null, $id));
+	}
 }
