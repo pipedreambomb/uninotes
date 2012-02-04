@@ -2,7 +2,6 @@
 	<h2><?php __('Events');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php //echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('datetime');?></th>
 			<th><?php echo $this->Paginator->sort('subject_id');?></th>

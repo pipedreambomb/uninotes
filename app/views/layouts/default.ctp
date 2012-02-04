@@ -74,13 +74,15 @@
                 </div>
             </div>
             <div id="content">
-                
+		    <div id="innerContent">
+			
 
-                <?php echo $this->Session->flash(); ?>
-                <?php echo $this->Session->flash('auth'); ?>
+			<?php echo $this->Session->flash(); ?>
+			<?php echo $this->Session->flash('auth'); ?>
 
-                <?php echo $content_for_layout; ?>
+			<?php echo $content_for_layout; ?>
 
+		    </div>
             </div>
             <div id="footer">
                 <?php

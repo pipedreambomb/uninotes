@@ -51,9 +51,9 @@ root {
 	width: 50%;
 }
 
-#content #home {
+#content #innerContent {
 	margin: 0 auto;
-	width: 60%;
+	width: 80%;
 }
 
 #content #home h1 { 
