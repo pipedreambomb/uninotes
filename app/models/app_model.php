@@ -34,6 +34,6 @@
 class AppModel extends Model {
 
 	function findById($id) {
-		return $this->find('first', array('conditions' => array('id' => $id)));
+		return $this->find('first', array('conditions' => array(get_class($this) . '.id' => $id)));
 	}
 }

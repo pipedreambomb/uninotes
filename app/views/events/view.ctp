@@ -25,7 +25,7 @@
 </div>
 <div class="related links">
 	<h3><?php __('Links');?></h3>
-	<?php echo $this->lists->links($event['Link']); ?>
+	<?php echo $this->lists->links($event['Link'], 'Event', $event['Event']['id']); ?>
 </div>
 <div class="related">
 	<h3><?php __('Users following this event');?></h3>

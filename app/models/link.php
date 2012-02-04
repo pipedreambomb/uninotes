@@ -86,28 +86,37 @@ class Link extends AppModel {
 			'insertQuery' => ''
 		)
 	);
-/*
 	function beforeSave($options) {
-	
+
+		$this->data['Link']['url'] = $this->_addHttpPrefix($this->data['Link']['url']);	
 		debug($this->data);
 
-		//don't save while I'm still testing
-		return false;
+		return true;
 	}
- */
+
+	private function _addHttpPrefix($url) {
+		$_httpPrefix = 'http://';
+		$res = $url;
+		// strstr means contains
+		if (!strstr($res, $_httpPrefix)) {
+			$res = $_httpPrefix . $res;
+		}
+		return $res;
+	}
+
 	function getLinkTarget($type, $id) {
 		switch ($type) {
 		case "Event":
-			$target = $this->Event->find($id);
+			$target = $this->Event->findById($id);
 			break;
 		case "Organization":
 			$target = $this->Organization->findById($id);
 			break;
 		case "Subject":
-			$target = $this->Subject->find($id);
+			$target = $this->Subject->findById($id);
 			break;
 		case "User": 
-			$target = $this->User->find($id);
+			$target = $this->User->findById($id);
 			break;
 		default:
 			$this->Session->setFlash("Unexpected target type");

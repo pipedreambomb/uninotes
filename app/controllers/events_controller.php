@@ -72,4 +72,19 @@ class EventsController extends AppController {
 		$this->Session->setFlash(__('Event was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+
+    function follow($id = null) {
+
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid id for event', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        $userId = $this->Auth->user('id');
+        if ($this->Event->User->follow('Event', $userId, $id)) {
+            $this->Session->setFlash(__('Event followed', true));
+            $this->redirect(array('action' => 'view', $id));
+        }
+        $this->Session->setFlash(__('Event was not followed', true));
+        $this->redirect(array('action' => 'index'));
+    }
 }

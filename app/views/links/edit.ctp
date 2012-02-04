@@ -4,8 +4,8 @@
 		<legend><?php __('Edit Link'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('url');
-		echo $this->Form->input('text', array('label' => 'Label (optional)'));
+		echo $this->Form->input('url', array('label' => 'URL (e.g. \'http://www.example.com\')'));
+		echo $this->Form->input('text', array('label' => 'Label (description to be displayed; optional)'));
 		//echo $this->Form->input('Event');
 		//echo $this->Form->input('Organization');
 		//echo $this->Form->input('Subject');
