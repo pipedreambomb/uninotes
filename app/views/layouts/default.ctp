@@ -57,6 +57,9 @@
                         <li>
                             <? echo $this->Html->link('Events', array('controller' => 'events', 'action' => 'index'));?>
                         </li>
+                        <li>
+                            <? echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index'));?>
+                        </li>
                     </ul>
                 </div>
                 <div id="login">
@@ -75,7 +78,11 @@
             </div>
             <div id="content">
 		    <div id="innerContent">
-			
+
+
+		<div id='breadcrumbs'>
+			<? echo $this->Html->getCrumbs(' > ','Home');?> 
+		</div>
 
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>

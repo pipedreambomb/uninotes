@@ -51,6 +51,10 @@ root {
 	width: 50%;
 }
 
+#content #breadcrumbs {
+	padding: 1em;
+}
+
 #content #innerContent {
 	margin: 0 auto;
 	width: 80%;

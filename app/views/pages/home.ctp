@@ -1,4 +1,5 @@
 <div id="home">
+
 	<h2>Welcome to UniNot.es!</h2>
 
 	<p>This site is currently work-in-progress - and you can help by clicking around and <a href="mailto:g@georgenixon.co.uk">telling me</a> if something goes wrong! The eventual goal of UniNot.es is to aid collaboration between students, conference attendees and academics, using live event-based note sessions saved for future revision. Hopefully by May you will be able to find such sessions by organization, location or via people you know also using the site, and learn and share together.</p>  

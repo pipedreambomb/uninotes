@@ -12,8 +12,13 @@ class UsersController extends AppController {
 
         parent::beforeFilter();
 
-        $this->Auth->allow('add', 'view');
+        $this->Auth->allow('index', 'add', 'view');
     }
+
+	function index() {
+		$this->User->recursive = 0;
+		$this->set('users', $this->paginate());
+	}
 
     public function add() {
 

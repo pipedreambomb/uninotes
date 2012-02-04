@@ -1,6 +1,6 @@
 <div class="users view">
+<? //echo $this->Breadcrumbs->crumbs();?>
 <h2><?php  __('User');?></h2>
-<? //debug($userProfile) ?>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Username'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
