@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 29, 2011 at 08:01 PM
+-- Generation Time: Feb 04, 2012 at 06:21 PM
 -- Server version: 5.1.58
 -- PHP Version: 5.3.6-13ubuntu3.3
 
@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` int(11) DEFAULT NULL,
+  `name` varchar(200) NOT NULL,
   `datetime` datetime DEFAULT NULL,
   `subject_id` bigint(20) NOT NULL,
   `textual_notes` text,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 INSERT INTO `events` (`id`, `name`, `datetime`, `subject_id`, `textual_notes`) VALUES
-(1, 0, '2011-11-10 14:35:00', 1, 'Here are some notes from today''s lecture:\r\n\r\n1) Things are aweseom\r\n2) awesome things are awesome\r\n3) coursework is out and due in 2013.');
+(1, 'Lecture 2 - Oracle OODB', '2011-11-10 14:35:00', 1, 'Here are some notes from today''s lecture:\r\n\r\n1) Things are awesome.\r\n2) awesome things are awesome\r\n3) coursework is out and due in 2013.');
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `url` varchar(2000) NOT NULL,
   `text` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `links`
@@ -60,8 +60,14 @@ CREATE TABLE IF NOT EXISTS `links` (
 
 INSERT INTO `links` (`id`, `url`, `text`) VALUES
 (1, 'http://www.cardiff.ac.uk', 'Cardiff University home page'),
-(2, 'http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=a.d.preece', 'Tom''s contact page'),
-(3, 'https://docs.google.com/document/d/1OWtfDMAmKoi3SuZYMgQcBWVjIK94S3hHkS6nh3maKoo/edit', 'GDoc #1');
+(2, 'http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=a.d.preece', ''),
+(3, 'https://docs.google.com/document/d/1OWtfDMAmKoi3SuZYMgQcBWVjIK94S3hHkS6nh3maKoo/edit', 'GDoc #1'),
+(5, 'http://bbc.co.uk', 'BBC Homepage'),
+(6, 'georgenixon.co.uk', ''),
+(7, 'www.bbc.co.uk', ''),
+(8, 'http.com', ''),
+(10, 'georgenixon.co.uk', 'George''s site'),
+(12, 'youtube.com', 'YouTube');
 
 -- --------------------------------------------------------
 
@@ -74,12 +80,14 @@ CREATE TABLE IF NOT EXISTS `links_events` (
   `link_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `links_events`
 --
 
+INSERT INTO `links_events` (`id`, `link_id`, `event_id`) VALUES
+(1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -92,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `links_organizations` (
   `link_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `links_organizations`
@@ -100,7 +108,9 @@ CREATE TABLE IF NOT EXISTS `links_organizations` (
 
 INSERT INTO `links_organizations` (`id`, `link_id`, `organization_id`) VALUES
 (1, 1, 1),
-(3, 2, 1);
+(3, 2, 1),
+(4, 8, 3),
+(5, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -113,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `links_subjects` (
   `link_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `links_subjects`
@@ -121,7 +131,8 @@ CREATE TABLE IF NOT EXISTS `links_subjects` (
 
 INSERT INTO `links_subjects` (`id`, `link_id`, `subject_id`) VALUES
 (2, 2, 1),
-(3, 3, 1);
+(3, 3, 1),
+(7, 12, 2);
 
 -- --------------------------------------------------------
 
@@ -151,14 +162,15 @@ CREATE TABLE IF NOT EXISTS `organizations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `organizations`
 --
 
 INSERT INTO `organizations` (`id`, `name`) VALUES
-(1, 'Cardiff University');
+(1, 'Cardiff University'),
+(3, 'UWIC');
 
 -- --------------------------------------------------------
 
@@ -171,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `name` varchar(200) NOT NULL,
   `organization_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `subjects`
@@ -179,7 +191,8 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 
 INSERT INTO `subjects` (`id`, `name`, `organization_id`) VALUES
 (1, 'Database Management', 1),
-(2, 'Multimedia', 1);
+(2, 'Multimedia', 1),
+(3, 'Artificial Intelligence', 3);
 
 -- --------------------------------------------------------
 
@@ -194,14 +207,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `active`, `email`) VALUES
-(4, 'jambo81', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'violentfemme@gmail.com');
+(4, 'jambo81', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'violentfemme@gmail.com'),
+(5, 'gojedfoj', '88f57d4cb0078fdcb9f575568110ea703b714ead', 1, 'vdsfovfdsjofds@dsfkpgfok.com'),
+(6, 'pipedreambomb', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'mail@georgenixon.co.uk');
 
 -- --------------------------------------------------------
 
@@ -214,12 +229,14 @@ CREATE TABLE IF NOT EXISTS `users_events` (
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users_events`
 --
 
+INSERT INTO `users_events` (`id`, `user_id`, `event_id`) VALUES
+(1, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -232,14 +249,15 @@ CREATE TABLE IF NOT EXISTS `users_organizations` (
   `user_id` int(11) NOT NULL,
   `organization_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `users_organizations`
 --
 
 INSERT INTO `users_organizations` (`id`, `user_id`, `organization_id`) VALUES
-(2, 1, 1);
+(2, 1, 1),
+(5, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -252,11 +270,12 @@ CREATE TABLE IF NOT EXISTS `users_subjects` (
   `user_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `users_subjects`
 --
 
 INSERT INTO `users_subjects` (`id`, `user_id`, `subject_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(7, 4, 1);
