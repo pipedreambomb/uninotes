@@ -10,8 +10,8 @@ class AppController extends Controller {
 	    'authError' => 'You must be logged in to access this area',
 	    'logoutRedirect' => array(
 		'admin' => false,
-		'controller' => 'pages',
-		'action' => 'display', 'home'
+		'controller' => 'users',
+		'action' => 'dashboard'
 	    )
         ),
         'Cookie',

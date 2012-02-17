@@ -76,9 +76,9 @@
                 </div>
                 <div id="login">
                 <?php if (!empty($user)) { ?>
-                    Welcome back <?php echo $user['username']; ?>!
-
-                    <?php
+                    Welcome back <?php 
+                    echo $this->Html->link($user['username'], array('controller' => 'users', 'action' => 'dashboard'));
+		  ?>!&nbsp;<?
                     echo $this->Html->link('Log out', array('controller' => 'users', 'action' => 'logout'));
                 } else {
                     echo $this->Html->link('Log in', array('controller' => 'users', 'action' => 'login'));

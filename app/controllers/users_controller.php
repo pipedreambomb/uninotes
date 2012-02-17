@@ -6,7 +6,7 @@ class UsersController extends AppController {
     var $components = array('Recaptcha.Captcha' => array(
             'private_key' => '6LeewcsSAAAAAI2idDck79tLkRomGdTcyyiEaSUQ',
             'public_key' => '6LeewcsSAAAAALlyb2fjylNG-7Yl-_16aXXL3OPC'));
-    var $helpers = array('Recaptcha.CaptchaTool');
+    var $helpers = array('Glink', 'Recaptcha.CaptchaTool');
 
     public function beforeFilter() {
 
@@ -105,4 +105,29 @@ class UsersController extends AppController {
 		}
 		$this->set('userProfile', $this->User->read(null, $id));
 	}
+
+    function dashboard(){
+    }
+
+    // Connect user's account to their Google account
+    // TODO: unlink?
+    public function glink() {
+    //TODO: validate user hasn't done this already.
+	if(!isset($_GET['token'])) {
+		$this->Session->setFlash(__('Invalid Google token', true));
+		$this->goHome();
+	}
+	$token = $_GET['token'];
+		App::import('Vendor', 'zend_include_path');
+		App::import('Vendor', 'Zend_Gdata', true, false, 'Zend/Gdata.php');
+
+		Zend_Loader::loadClass('Zend_Http_Client');
+		Zend_Loader::loadClass('Zend_Gdata');
+		Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
+		Zend_Loader::loadClass('Zend_Gdata_AuthSub');
+			$client = Zend_Gdata_AuthSub::getHttpClient($token);
+		    $gdata = new Zend_Gdata($client);
+				$feed = $gdata->get('https://www.googleapis.com/oauth2/v1/userinfo');
+			debug(json_decode($feed->getBody())->email);
+    }
 }

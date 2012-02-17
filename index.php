@@ -43,6 +43,7 @@ if (!defined('CAKE_CORE_INCLUDE_PATH')) {
  * Set the include path or define app and core path
  */
 if (function_exists('ini_set')) {
+	ini_set("track_errors", "1");
         ini_set('include_path',
                 ini_get('include_path') . PATH_SEPARATOR . CAKE_CORE_INCLUDE_PATH
                 . PATH_SEPARATOR . ROOT . DS . APP_DIR . DS
