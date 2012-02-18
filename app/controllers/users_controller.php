@@ -89,7 +89,7 @@ class UsersController extends AppController {
 
 	}
 
-	function setCookies(){
+	function refreshUserSessionInfo(){
 		$user = $this->User->read(null, $this->Auth->user('id'));
 		$this->Session->write($this->Auth->sessionKey, $user['User']);
 	}
@@ -112,6 +112,8 @@ class UsersController extends AppController {
 	}
 
 	function dashboard(){
+		//cheating for test purposes, comment this out later
+		$this->refreshUserSessionInfo();
 	}
 
 	// Connect user's account to their Google account
@@ -134,15 +136,23 @@ class UsersController extends AppController {
 		$feed = $gdata->get('https://www.googleapis.com/oauth2/v1/userinfo');
 		$gId = json_decode($feed->getBody())->email;
 		$userId = $this->Auth->user('id');
-		$this->User->addGoogleId($userId, $gId);
-		$this->setCookies();
+		try {
+			$this->User->addGoogleId($userId, $gId);
+		} catch (Exception $ex) {
+			$this->Session->setFlash(get_class($ex) . " " . $ex->getMessage());
+		}
+		$this->refreshUserSessionInfo();
 		$this->redirect(array('action' => 'dashboard'));
 	}
 
 	function gunlink() {
 		$userId = $this->Auth->user('id');
-		$this->User->rmGoogleId($userId);
-		$this->setCookies();
+		try {
+			$this->User->rmGoogleId($userId);
+		} catch (Exception $ex) {
+			$this->Session->setFlash($ex->getMessage());
+		}
+		$this->refreshUserSessionInfo();
 		$this->redirect(array('action' => 'dashboard'));
 	}
 }
