@@ -10,7 +10,7 @@ class LinksController extends AppController {
             $this->Auth->allow('index', 'view', 'go');
         }
 
-	private function checkExists($id) {
+	private function _checkExists($id) {
 		if (!$id || !$this->Link->exists($id)) {
 			$this->Session->setFlash(__('Invalid link', true));
 			$this->go404();
@@ -18,7 +18,7 @@ class LinksController extends AppController {
 	}
 
 	function view($id = null) {
-		$this->checkExists($id);
+		$this->_checkExists($id);
 		$this->set('link', $this->Link->read(null, $id));
 	}
 
@@ -40,7 +40,7 @@ class LinksController extends AppController {
 	}
 
 	function edit($id = null) {
-		$this->checkExists($id);
+		$this->_checkExists($id);
 
 		if (!empty($this->data)) {
 			if ($this->Link->save($this->data)) {
@@ -61,7 +61,7 @@ class LinksController extends AppController {
 	}
 
 	function delete($id = null) {
-		$this->checkExists($id);
+		$this->_checkExists($id);
 		if ($this->Link->delete($id)) {
 			$this->Session->setFlash(__('Link deleted', true));
 			$this->goHome();
@@ -71,7 +71,7 @@ class LinksController extends AppController {
 	}
 	
 	function go($id = null) {
-		$this->checkExists($id);
+		$this->_checkExists($id);
 		$this->set('link', $this->Link->read(null, $id));
 	}
 

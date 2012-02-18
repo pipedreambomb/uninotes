@@ -86,6 +86,7 @@ class Link extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+
 	function beforeSave($options) {
 
 		$this->data['Link']['url'] = $this->_addHttpPrefix($this->data['Link']['url']);	
@@ -104,6 +105,7 @@ class Link extends AppModel {
 		return $res;
 	}
 
+	// Retrieve the item to which the link is to be associated, e.g. a link about Event #44
 	function getLinkTarget($type, $id) {
 		switch ($type) {
 		case "Event":

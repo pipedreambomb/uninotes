@@ -23,6 +23,10 @@
 		</dd>
 	</dl>
 </div>
+<div class="related documents">
+	<h3><?php __('Documents');?></h3>
+	<?php echo $this->lists->documents($event['Document'], 'Event', $event['Event']['id']); ?>
+</div>
 <div class="related links">
 	<h3><?php __('Links');?></h3>
 	<?php echo $this->lists->links($event['Link'], 'Event', $event['Event']['id']); ?>

@@ -47,7 +47,7 @@ root {
 	font-size: large
 }
 
-#content .related.links {
+#content .related.links, .related.documents {
 	width: 50%;
 }
 
