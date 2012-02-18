@@ -86,8 +86,10 @@ class User extends AppModel {
 
 	public function addGoogleId($userId, $googleId) {
 		$this->_saveGoogleIdToUser($userId, $googleId);
-		//TODO: check isn't already added, or possibly just ignore a 409: This user already has access to the document.
-		$this->_addGDocsEditor($googleId);
+		//check googleId has not already been added (probably to a separate user account on my site)
+		if($this->_countMatchingGIds($googleId) == 0) {
+			$this->_addGDocsEditor($googleId);
+		}
 	}
 
 	private function _saveGoogleIdToUser($userId, $googleId) {
@@ -109,8 +111,16 @@ class User extends AppModel {
 		$user['User']['google_id'] = null;
 		$this->save($user);
 
-		//TODO check there are no more users with same google id before removing
-		$this->_rmGDocsEditor($googleId);
+		//check there are no more users with same google id before removing
+		if($this->_countMatchingGIds($googleId) == 0) {
+			$this->_rmGDocsEditor($googleId);
+		}
+	}
+
+	private function _countMatchingGIds($googleId) { 
+		return $this->find('count', array(
+			'conditions' => array('User.google_id' => $googleId)
+		));
 	}
 
 	// @returns Zend_Gdata_Docs client for sending requests to Google
