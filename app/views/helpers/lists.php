@@ -57,7 +57,6 @@ class ListsHelper extends Helper {
 				. "<td>" . $this->Html->link($displayText, array('controller' => 'links', 'action' => 'go', $link['id'])) . "</td>"
 				. "<td class=\"actions\">";
 			$out .= $this->Html->link(__('Edit', true), array('controller' => 'links', 'action' => 'edit', $link['id']));
-				$out .= $this->Html->link(__('Delete', true), array('controller' => 'links', 'action' => 'delete', $link['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $link['id']));
 				$out .= "
 				</td>
 				</tr>";

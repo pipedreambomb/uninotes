@@ -34,12 +34,8 @@
 <div class="related">
 	<h3><?php __('Users following this event');?></h3>
 	<? echo $this->lists->users($event['User']); ?>
-	<div class="actions">
-		<ul>
-			<li><?php 
-				echo $this->Html->link(__('Follow this event', true), array('action' => 'follow', $event['Event']['id']));?> 
-			</li>
-                </ul>
-        </div>
+	<div class=\"actions\">
+		<? echo $this->Html->link(__('Follow This Event', true),	array('action' => 'follow', $event['Event']['id']), array('class' => 'link_button')); ?>
+	</div>
 </div>
 </div>

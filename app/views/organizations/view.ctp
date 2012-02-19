@@ -44,7 +44,6 @@
 			<td><?php echo $this->Html->link(__($subject['name'], true), array('controller' => 'subjects', 'action' => 'view', $subject['id'])); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'subjects', 'action' => 'edit', $subject['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'subjects', 'action' => 'delete', $subject['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subject['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -61,11 +60,7 @@
 	<h3><?php __('Users following this organization');?></h3>
 	<? echo $this->lists->users($organization['User']); ?>
 	<div class=\"actions\">
-		<ul>
-			<li>
-			<? echo $this->Html->link(__('Follow this organization', true), 
-			array('action' => 'follow', $organization['Organization']['id'])); ?>
-			</li>
-		</ul>
-	</div>;
+			<? echo $this->Html->link(__('Follow This Organization', true), 
+			array('action' => 'follow', $organization['Organization']['id']), array('class' => 'link_button')); ?>
+	</div>
 </div>

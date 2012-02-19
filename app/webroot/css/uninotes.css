@@ -53,11 +53,6 @@ root {
 #content h1 {
 	font-size: large
 }
-/*
-#content .related.links, .related.documents {
-	width: 50%;
-}
-*/
 
 #content #breadcrumbs {
 	padding: 1em;
@@ -81,6 +76,10 @@ root {
 	width: 500px;
 }
 
+#content .related .link_button {
+	float: right;
+}
+
 ul.inline-headings{
 	display:inline-block;
 }
@@ -91,6 +90,7 @@ ul.inline-headings li {
 /*Overide built-in positioning of Actions navbar*/
 div.form, div.index, div.view {
 	float: left !important;
+	border-left: none !important;
 }
 
 div.actions {
