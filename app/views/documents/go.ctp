@@ -1,8 +1,12 @@
 <div id="home">
 	
-	<h1>External document</h1>
+<div id="gdocs_preview">
+<h1>Preview:</h1>
+<iframe src="http://docs.google.com/viewer?url=<? echo urlencode($document['Document']['url_pdf']); ?>&embedded=true" width="500" height="300"></iframe>
+</div>	
+	<h1>External document: <? echo $document['Document']['text']; ?></h1>
 	
-	<p>Continue to Google Docs to view <strong>"<? echo $document['Document']['text']; ?>"</strong><? if($user['google_id'] != null) echo "(" . $this->Html->link("edit title", array('action' => 'edit', $document['Document']['id'])). ")" ?>.</p>
+	<p>Continue to Google Docs to view <? if($user['google_id'] != null) echo "and edit "; ?><strong>"<? echo $document['Document']['text']; ?>"</strong><? if($user['google_id'] != null) echo "(" . $this->Html->link("edit title", array('action' => 'edit', $document['Document']['id'])). ")"; ?>.</p>
 <div>
 <? 	if($user['google_id'] == null) :
 ?><p>
@@ -31,8 +35,6 @@ As you have associated the Google account <strong>"<? echo $user['google_id'] ?>
 	endif;
 ?>
 </p></div>
-
-	
 	<p>Please be aware that you are now leaving this site and that UniNot.es accepts no responsibility for external websites and their content.</p>
 
 </div>

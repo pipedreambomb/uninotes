@@ -76,6 +76,11 @@ root {
 	padding-top: 1em;
 }
 
+#content #gdocs_preview {
+	float:right;
+	width: 500px;
+}
+
 ul.inline-headings{
 	display:inline-block;
 }
