@@ -53,10 +53,11 @@ root {
 #content h1 {
 	font-size: large
 }
-
+/*
 #content .related.links, .related.documents {
 	width: 50%;
 }
+*/
 
 #content #breadcrumbs {
 	padding: 1em;

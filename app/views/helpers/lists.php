@@ -10,7 +10,6 @@ class ListsHelper extends Helper {
 			$out .= "<table cellpadding = \"0\" cellspacing = \"0\">
 				<tr>
 				<th>Document</th>
-				<th class=\"actions\">Actions</th>
 				</tr>";
 			$i = 0;
 			foreach ($documents as $document) {
@@ -24,10 +23,7 @@ class ListsHelper extends Helper {
 				}
 			$out .= "<tr" . $class . ">" 
 				. "<td>" . $this->Html->link($displayText, array('controller' => 'documents', 'action' => 'go', $document['id'])) . "</td>"
-				. "<td class=\"actions\">";
-			$out .= $this->Html->link(__('Edit', true), array('controller' => 'documents', 'action' => 'edit', $document['id']));
-				$out .= "</td>
-				</tr>";
+				. "</tr>";
 			}
 			$out .= "</table>";
 		}
