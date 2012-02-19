@@ -6,7 +6,7 @@
 <div>
 <? 	if($user['google_id'] == null) :
 ?><p>
-	Please note that <strong>in order to make changes</strong> to the document, you must be logged in and have an associated Google account. Click here to <? e($this->Html->Link('register', array('controller' => 'users', 'action' => 'add')));?>, <? e($this->Html->Link('log in', array('controller' => 'users', 'action' => 'login')));?> or change your <? e($this->Html->Link('settings', array('controller' => 'users', 'action' => 'dashboard')));?> to add a Google profile.
+	Please note that <strong>in order to make changes</strong> to the document, you must have a Google account associated with your UniNot.es account. Click here to <? e($this->Html->Link('register', array('controller' => 'users', 'action' => 'add')));?>, or if you have already registered, change your <? e($this->Html->Link('settings', array('controller' => 'users', 'action' => 'dashboard')));?> to add a Google profile.
 </p>
 <p><?
 	echo $this->Html->link(
