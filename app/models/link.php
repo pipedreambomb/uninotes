@@ -90,7 +90,6 @@ class Link extends AppModel {
 	function beforeSave($options) {
 
 		$this->data['Link']['url'] = $this->_addHttpPrefix($this->data['Link']['url']);	
-		debug($this->data);
 
 		return true;
 	}
