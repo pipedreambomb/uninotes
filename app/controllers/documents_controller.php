@@ -3,6 +3,11 @@ class DocumentsController extends AppController {
 
 	var $name = 'Documents';
     	var $helpers = array('Js' => array('Jquery'));
+	
+	public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Auth->allow('index', 'view', 'go');
+        }
 
 	function index() {
 		$this->Document->recursive = 0;

@@ -3,7 +3,7 @@
 	<h1>External link: <? echo $link['Link']['text']; ?></h1>
 	
 	<? echo $this->Html->script('jquery-1.7.1.min.js'); // Include jQuery library > 
-	$myScript = "$(function(){
+	$countdownScript = "$(function(){
 		  var count = 5;
 		    countdown = setInterval(function(){
 			        $('#countdown').html(count.toString());

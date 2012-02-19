@@ -85,9 +85,10 @@ class User extends AppModel {
 	}
 
 	public function addGoogleId($userId, $googleId) {
+		$existingMatches = $this->_countMatchingGIds($googleId); 
 		$this->_saveGoogleIdToUser($userId, $googleId);
-		//check googleId has not already been added (probably to a separate user account on my site)
-		if($this->_countMatchingGIds($googleId) == 0) {
+		//check googleId has not already been added (probably to a separate user account on my site sharing the same Google account)
+		if($existingMatches  == 0) {
 			$this->_addGDocsEditor($googleId);
 		}
 	}
