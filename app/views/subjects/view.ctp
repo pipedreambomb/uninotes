@@ -14,6 +14,10 @@
 		<li><?php echo $this->Html->link(__('Edit Subject', true), array('action' => 'edit', $subject['Subject']['id'])); ?> </li>
 	</ul>
 </div>
+<div class="related documents">
+	<h3><?php __('Notes');?></h3>
+	<?php echo $this->lists->documents($subject['Document'], 'Subject', $subject['Subject']['id']); ?>
+</div>
 <div class="related links">
 	<h3><?php __('Links');?></h3>
 	<?php echo $this->lists->links($subject['Link'], 'Subject', $subject['Subject']['id']); ?>

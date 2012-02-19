@@ -24,7 +24,7 @@
 	</dl>
 </div>
 <div class="related documents">
-	<h3><?php __('Documents');?></h3>
+	<h3><?php __('Notes');?></h3>
 	<?php echo $this->lists->documents($event['Document'], 'Event', $event['Event']['id']); ?>
 </div>
 <div class="related links">

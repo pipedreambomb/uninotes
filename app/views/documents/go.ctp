@@ -2,7 +2,7 @@
 	
 	<h1>External document</h1>
 	
-	<p>Continue to Google Docs to view <strong>"<? echo $document['Document']['text']; ?>"</strong>.</p>
+	<p>Continue to Google Docs to view <strong>"<? echo $document['Document']['text']; ?>"</strong><? if($user['google_id'] != null) echo "(" . $this->Html->link("edit title", array('action' => 'edit', $document['Document']['id'])). ")" ?>.</p>
 <div>
 <? 	if($user['google_id'] == null) :
 ?><p>

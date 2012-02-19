@@ -15,6 +15,10 @@
 		<li><?php echo $this->Html->link(__('Delete Organization', true), array('action' => 'delete', $organization['Organization']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $organization['Organization']['id'])); ?> </li>
 	</ul>
 </div>
+<div class="related documents">
+	<h3><?php __('Notes');?></h3>
+	<?php echo $this->lists->documents($organization['Document'], 'Organization', $organization['Organization']['id']); ?>
+</div>
 <div class="related links">
 	<h3><?php __('Links');?></h3>
 	<? echo $this->lists->links($organization['Link'], 'Organization', $organization['Organization']['id'] ); ?>

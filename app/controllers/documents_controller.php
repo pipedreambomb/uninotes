@@ -6,18 +6,13 @@ class DocumentsController extends AppController {
 	
 	public function beforeFilter() {
             parent::beforeFilter();
-            $this->Auth->allow('index', 'view', 'go');
+            $this->Auth->allow('view', 'go');
         }
-
-	function index() {
-		$this->Document->recursive = 0;
-		$this->set('documents', $this->paginate());
-	}
 
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid document', true));
-			$this->redirect(array('action' => 'index'));
+			$this->go404();
 		}
 		$this->set('document', $this->Document->read(null, $id));
 	}
@@ -27,27 +22,25 @@ class DocumentsController extends AppController {
 			$this->Document->create();
 			if ($this->Document->save($this->data)) {
 				$this->Session->setFlash(__('The document has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'go', $this->Document->id));
 			} else {
 				$this->Session->setFlash(__('The document could not be saved. Please, try again.', true));
 			}
 		}
 		if (isset($type) && isset($id)) {
 			$this->set('target', $this->Document->getDocumentTarget($type, $id));
-		} else {
-			//error
-		}
+		} 
 	}
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid document', true));
-			$this->redirect(array('action' => 'index'));
+			$this->go404();
 		}
 		if (!empty($this->data)) {
 			if ($this->Document->save($this->data)) {
 				$this->Session->setFlash(__('The document has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'go', $this->Document->id));
 			} else {
 				$this->Session->setFlash(__('The document could not be saved. Please, try again.', true));
 			}
@@ -72,16 +65,4 @@ class DocumentsController extends AppController {
 		$this->set('document', $this->Document->read(null, $id));
 	}
 
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for document', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Document->delete($id)) {
-			$this->Session->setFlash(__('Document deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Document was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
 }
