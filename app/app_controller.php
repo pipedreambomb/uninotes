@@ -76,5 +76,3 @@ class AppController extends Controller {
 	}
 
 }
-?>
-
