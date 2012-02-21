@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2012 at 06:21 PM
+-- Generation Time: Feb 21, 2012 at 05:20 PM
 -- Server version: 5.1.58
--- PHP Version: 5.3.6-13ubuntu3.3
+-- PHP Version: 5.3.6-13ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -18,6 +18,102 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `uninotes`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
+--
+
+CREATE TABLE IF NOT EXISTS `documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `google_doc_id` varchar(300) NOT NULL,
+  `text` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `google_doc_id` (`google_doc_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`id`, `google_doc_id`, `text`) VALUES
+(7, '1cP6uMU2izq5SLt1BmFU4WLyeUhvamhiWAu--CKT-hG4', 'test79'),
+(5, '1dEyQUMxiUk3T5Cricw5DYMFSSITMfPIfNehq9ejLg-s', 'Better title'),
+(8, '1s86dpurii8KFGrN--8Md99F9CXc-9AmcCFmT6vQ8Ze4', 'My notes 55'),
+(9, '1Jd6lNQ13z9nNS88BNgvJRcrJEu5teflaKBYaFgIItOM', 'My notes 2'),
+(10, '1nbxoK2PKBJea_FLXpbiyMAnTk7DyMAVGZh3xG3iSl88', 'My notes 2'),
+(11, '1scmONx9GYHrnw_JZbJL6yO99vxwumyPsUuGARdYnS9A', 'My notes 2'),
+(12, '1ag8bHvG_Rj90MKzblQPfdkumtJjdAg-PKHN1waRafj8', 'My notes 3'),
+(13, '11UA876B2_9JfM4OA4MOJVSoYkpgFrVXdOKI7nOIEzwU', 'CU notes'),
+(14, '1x253bOuwGH0rKnALV3YgyxNxGpgY8wVqumONkyQwo8U', 'DB info');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents_events`
+--
+
+CREATE TABLE IF NOT EXISTS `documents_events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `documents_events`
+--
+
+INSERT INTO `documents_events` (`id`, `document_id`, `event_id`) VALUES
+(1, 1, 1),
+(4, 5, 1),
+(6, 7, 1),
+(7, 8, 1),
+(8, 9, 1),
+(9, 10, 1),
+(10, 11, 1),
+(11, 12, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents_organizations`
+--
+
+CREATE TABLE IF NOT EXISTS `documents_organizations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_id` int(11) NOT NULL,
+  `organization_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `documents_organizations`
+--
+
+INSERT INTO `documents_organizations` (`id`, `document_id`, `organization_id`) VALUES
+(1, 13, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents_subjects`
+--
+
+CREATE TABLE IF NOT EXISTS `documents_subjects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `documents_subjects`
+--
+
+INSERT INTO `documents_subjects` (`id`, `document_id`, `subject_id`) VALUES
+(1, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -59,9 +155,7 @@ CREATE TABLE IF NOT EXISTS `links` (
 --
 
 INSERT INTO `links` (`id`, `url`, `text`) VALUES
-(1, 'http://www.cardiff.ac.uk', 'Cardiff University home page'),
 (2, 'http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=a.d.preece', ''),
-(3, 'https://docs.google.com/document/d/1OWtfDMAmKoi3SuZYMgQcBWVjIK94S3hHkS6nh3maKoo/edit', 'GDoc #1'),
 (5, 'http://bbc.co.uk', 'BBC Homepage'),
 (6, 'georgenixon.co.uk', ''),
 (7, 'www.bbc.co.uk', ''),
@@ -107,7 +201,6 @@ CREATE TABLE IF NOT EXISTS `links_organizations` (
 --
 
 INSERT INTO `links_organizations` (`id`, `link_id`, `organization_id`) VALUES
-(1, 1, 1),
 (3, 2, 1),
 (4, 8, 3),
 (5, 10, 1);
@@ -206,6 +299,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` char(40) NOT NULL,
   `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `email` varchar(255) NOT NULL,
+  `google_id` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -213,10 +307,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `active`, `email`) VALUES
-(4, 'jambo81', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'violentfemme@gmail.com'),
-(5, 'gojedfoj', '88f57d4cb0078fdcb9f575568110ea703b714ead', 1, 'vdsfovfdsjofds@dsfkpgfok.com'),
-(6, 'pipedreambomb', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'mail@georgenixon.co.uk');
+INSERT INTO `users` (`id`, `username`, `password`, `active`, `email`, `google_id`) VALUES
+(4, 'jambo81', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'violentfemme@gmail.com', 'violentfemme@gmail.com'),
+(5, 'gojedfoj', '88f57d4cb0078fdcb9f575568110ea703b714ead', 1, 'vdsfovfdsjofds@dsfkpgfok.com', ''),
+(6, 'pipedreambomb', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'mail@georgenixon.co.uk', 'violentfemme@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -229,14 +323,14 @@ CREATE TABLE IF NOT EXISTS `users_events` (
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users_events`
 --
 
 INSERT INTO `users_events` (`id`, `user_id`, `event_id`) VALUES
-(1, 4, 1);
+(2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -270,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `users_subjects` (
   `user_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `users_subjects`
@@ -278,4 +372,4 @@ CREATE TABLE IF NOT EXISTS `users_subjects` (
 
 INSERT INTO `users_subjects` (`id`, `user_id`, `subject_id`) VALUES
 (1, 1, 1),
-(7, 4, 1);
+(8, 4, 1);
