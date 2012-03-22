@@ -61,6 +61,6 @@
 	<h3><?php __('Users following this subject');?></h3>
 	<? echo $this->lists->users($subject['User']); ?>
 	<div class=\"actions\">
-		<? echo $this->Html->link(__('Follow This Subject', true),	array('action' => 'follow', $subject['Subject']['id']), array('class' => 'link_button')); ?>
+		<? echo $this->Html->link(__('Follow This Subject', true),	array('action' => 'follow', $subject['Subject']['id']), array('class' => 'btn')); ?>
 	</div>
 </div>

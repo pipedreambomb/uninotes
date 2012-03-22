@@ -1,4 +1,4 @@
-<div id="home">
+<div class="hero-unit">
 	
 	<h1>External link: <? echo $link['Link']['text']; ?></h1>
 	
@@ -14,7 +14,7 @@
 		    }, 1000);
 		  });
 		";
-	$this->Js->buffer($myScript);
+	$this->Js->buffer($countdownScript);
 	echo $this->Js->writeBuffer(); // Write cached scripts ?>
 
 	<p>Redirecting you to <? echo $this->Html->link($link['Link']['url']); ?> in <span id="countdown">5</span> seconds.</p>

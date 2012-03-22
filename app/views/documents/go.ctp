@@ -16,7 +16,7 @@
 	echo $this->Html->link(
 			"View read only",
 			$document['Document']['url'],
-			array('class' => 'link_button',
+			array('class' => 'btn',
 				'target' => '_blank')
 		); ?>
 </p><?
@@ -28,7 +28,7 @@ As you have associated the Google account <strong>"<? echo $user['google_id'] ?>
 	echo $this->Html->link(
 			"View and Edit document",
 			$document['Document']['url'],
-			array('class' => 'link_button',
+			array('class' => 'btn',
 				'target' => '_blank')
 		); ?>
 </p><?
