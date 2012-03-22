@@ -17,8 +17,8 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
@@ -28,9 +28,12 @@
         <?php
         echo $this->Html->meta('icon');
 
-        echo $this->Html->css('cake.generic');
-        echo $this->Html->css('uninotes');
-
+	echo $this->Html->css('bootstrap.min');
+//        echo $this->Html->css('cake.generic');
+//        echo $this->Html->css('uninotes');
+	echo $this->Html->script('jquery-1.7.1.min.js'); // Include jQuery library > 
+	echo $this->Html->script('cakebootstrap.js');
+	echo $this->Html->script('bootstrap.js');
         echo $scripts_for_layout;
         ?>
 	<!-- Google Analytics -->
@@ -47,23 +50,17 @@
 	</script>
     </head>
     <body>
-        <div id="container">
-            <div id="header">
-                <h1>
-    <?php echo $this->Html->image("logo.png", array(
-    'alt' => "UniNot.es logo",
-    'url' => array('controller' => 'pages', 'action' => 'display', 'home'),
-    'id' => 'logo'
-    )); ?>
-- one place for everyone's notes &trade;
-                </h1>
-
-                <div id="navlinks">
-                    <ul class="inline-headings">
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+		    <ul class="nav">
+                        <li>
+                            <? echo $this->Html->link('UniNot.es', array('controller' => '', 'action' => 'index'), array('class' => 'brand'));?>
+			</li>
                         <li>
                             <? echo $this->Html->link('Organizations', array('controller' => 'organizations', 'action' => 'index'));?>
-                        </li>
-                        <li>
+			</li>
+			<li>
                             <? echo $this->Html->link('Subjects', array('controller' => 'subjects', 'action' => 'index'));?>
                         </li>
                         <li>
@@ -73,8 +70,7 @@
                             <? echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index'));?>
                         </li>
                     </ul>
-                </div>
-                <div id="login">
+	<p id="login" class="navbar-text pull-right">
                 <?php if (!empty($user)) { ?>
                     Welcome back <?php 
                     echo $this->Html->link($user['username'], array('controller' => 'users', 'action' => 'dashboard'));
@@ -86,12 +82,12 @@
                     echo $this->Html->link('Sign up!', array('controller' => 'users', 'action' => 'add'));
                 }
                 ?>
+	</p>
                 </div>
-            </div>
-            <div id="content">
-		    <div id="innerContent">
-
-
+	</div>
+</div>
+<div id="content" class="container">
+	<div id="innerContent" class="row">
 		<div id='breadcrumbs'>
 			<? echo $this->Html->getCrumbs(' > ','Home');?> 
 		</div>
@@ -101,16 +97,8 @@
 
 			<?php echo $content_for_layout; ?>
 
-		    </div>
-            </div>
-            <div id="footer">
-                <?php
-                echo $this->Html->link(
-                        $this->Html->image('cake.power.gif', array('alt' => __('CakePHP: the rapid development php framework', true), 'border' => '0')), 'http://www.cakephp.org/', array('target' => '_blank', 'escape' => false)
-                );
-                ?>
-            </div>
-        </div>
+	</div>
+</div>
 <?php //echo $this->element('sql_dump'); ?>
-    </body>
+</body>
 </html>

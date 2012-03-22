@@ -1,4 +1,4 @@
-<div id="home">
+<div id="home" class="hero-unit"> 
 
 	<h2>Welcome to UniNot.es!</h2>
 
