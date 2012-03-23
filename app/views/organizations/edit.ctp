@@ -10,6 +10,7 @@
 		echo $this->Form->input('description', array("type" => "textarea"));
 		echo $this->Form->input('address', array("type" => "textarea"));
 		echo $this->Form->input('Link.url');
+		echo $this->Form->hidden('Link.id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
