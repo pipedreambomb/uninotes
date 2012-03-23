@@ -87,19 +87,11 @@
                 </div>
 	</div>
 </div>
-<div id="content" class="container">
-	<div id="innerContent" class="row">
-		<div id='breadcrumbs'>
-			<? echo $this->Html->getCrumbs(' > ','Home');?> 
-		</div>
 
-			<?php echo $this->Session->flash(); ?>
-			<?php echo $this->Session->flash('auth'); ?>
+<?php echo $this->Session->flash(); ?>
+<?php echo $this->Session->flash('auth'); ?>
 
-			<?php echo $content_for_layout; ?>
+<?php echo $content_for_layout; ?>
 
-	</div>
-</div>
-<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>

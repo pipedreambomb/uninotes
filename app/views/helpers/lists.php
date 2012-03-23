@@ -8,9 +8,7 @@ class ListsHelper extends Helper {
 
 		if (!empty($documents)) {
 			$out .= "<table cellpadding = \"0\" cellspacing = \"0\">
-				<tr>
-				<th>Document</th>
-				</tr>";
+				";
 			$i = 0;
 			foreach ($documents as $document) {
 				// Used to display url if name is empty
@@ -29,7 +27,7 @@ class ListsHelper extends Helper {
 		}
 	$out .= "<div class=\"actions\">
 		<ul>
-			<li>" . $this->Html->link(__('New Document', true), array('controller' => 'documents', 'action' => 'add', $type, $id))  . "</li>
+			" . $this->Html->link(__('New Document', true), array('controller' => 'documents', 'action' => 'add', $type, $id), array("class" => "btn"))  . "
 		</ul>
 		</div>";
 		return $out;

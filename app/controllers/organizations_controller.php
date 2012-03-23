@@ -25,16 +25,13 @@ class OrganizationsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Organization->create();
-			if ($this->Organization->save($this->data)) {
+			if ($this->Organization->saveAll($this->data)) {
 				$this->Session->setFlash(__('The organization has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.', true));
 			}
 		}
-		$links = $this->Organization->Link->find('list');
-		$users = $this->Organization->User->find('list');
-		$this->set(compact('links', 'users'));
 	}
 
 	function edit($id = null) {
@@ -43,9 +40,9 @@ class OrganizationsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->Organization->save($this->data)) {
+			if ($this->Organization->saveAll($this->data)) {
 				$this->Session->setFlash(__('The organization has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->data['Organization']['id']));
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.', true));
 			}

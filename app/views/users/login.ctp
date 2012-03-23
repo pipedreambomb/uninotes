@@ -1,3 +1,5 @@
+<div class="container">
+<div class="hero-unit">
 <?php
 
 echo $this->Form->create(array('action' => 'login'));
@@ -9,3 +11,5 @@ echo $this->Form->inputs(array(
 ));
 echo $this->Form->end('Login');
 ?>
+</div>
+</div>

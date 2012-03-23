@@ -4,8 +4,23 @@ class Organization extends AppModel {
 	var $displayField = 'name';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-        var $actsAs = 'ExtendAssociations'; 
-        
+	var $hasOne = array(
+
+		'Link' => array(
+			'className' => 'Link',
+			'foreignKey' => 'organization_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 	var $hasMany = array(
 		'Subject' => array(
 			'className' => 'Subject',
@@ -29,21 +44,6 @@ class Organization extends AppModel {
 			'joinTable' => 'documents_organizations',
 			'foreignKey' => 'organization_id',
 			'associationForeignKey' => 'document_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
-		'Link' => array(
-			'className' => 'Link',
-			'joinTable' => 'links_organizations',
-			'foreignKey' => 'organization_id',
-			'associationForeignKey' => 'link_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',

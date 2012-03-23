@@ -24,27 +24,22 @@ class Link extends AppModel {
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+	var $belongsTo = array(
+		'Organization' => array(
+			'className' => 'Organization',
+			'foreignKey' => 'organization_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
 	var $hasAndBelongsToMany = array(
 		'Event' => array(
 			'className' => 'Event',
 			'joinTable' => 'links_events',
 			'foreignKey' => 'link_id',
 			'associationForeignKey' => 'event_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
-		'Organization' => array(
-			'className' => 'Organization',
-			'joinTable' => 'links_organizations',
-			'foreignKey' => 'link_id',
-			'associationForeignKey' => 'organization_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
@@ -109,9 +104,6 @@ class Link extends AppModel {
 		switch ($type) {
 		case "Event":
 			$target = $this->Event->findById($id);
-			break;
-		case "Organization":
-			$target = $this->Organization->findById($id);
 			break;
 		case "Subject":
 			$target = $this->Subject->findById($id);

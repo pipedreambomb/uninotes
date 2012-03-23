@@ -1,3 +1,5 @@
+<div class="container">
+<div class="row"> 
 <div class="hero-unit"> 
 
 	<h2>Welcome to UniNot.es!</h2>
@@ -45,4 +47,6 @@
 </div>
 <div class="span6">The source code will be open-sourced in summer 2012, but for pesky university reasons viz. collaboration, or in their parlance, plagiarism, it'll be off-limits until then. <a href="mailto:g@georgenixon.co.uk">Suggestions welcome</a>, however.</p>
 	
+</div>
+</div>
 </div>

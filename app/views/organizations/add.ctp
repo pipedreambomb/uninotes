@@ -4,8 +4,9 @@
 		<legend><?php __('Add Organization'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		//echo $this->Form->input('Link');
-		//echo $this->Form->input('User');
+		echo $this->Form->input('description');
+		echo $this->Form->input('address');
+		echo $this->Form->input('Link.url');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
