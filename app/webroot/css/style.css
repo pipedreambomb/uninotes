@@ -1,0 +1,11 @@
+div.image-holder img {
+	width: 100%;
+}
+
+.full-width {
+	width:100%;
+}
+
+.centered {
+	margin: 0 auto;
+}

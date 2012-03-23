@@ -29,6 +29,7 @@
         echo $this->Html->meta('icon');
 
 	echo $this->Html->css('bootstrap.min');
+	echo $this->Html->css('style');
 //        echo $this->Html->css('cake.generic');
 //        echo $this->Html->css('uninotes');
 	echo $this->Html->script('jquery-1.7.1.min.js'); // Include jQuery library > 
