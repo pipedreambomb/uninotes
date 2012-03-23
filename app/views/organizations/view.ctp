@@ -9,7 +9,7 @@
 		<? if ($organization['Organization']['description'] != null) {
 			echo $organization['Organization']['description'];
 		} else {
-			echo "We don't have a description for this organization yet - could you add one?";
+			echo "We don't have a description for this organization yet - why not help out and " . $this->Html->link('add one', array("action" => "edit", $organization['Organization']['id'])) . "?";
 		} ?>
 		</p></em>
 		<? if ($organization['Link'] != null) {
@@ -29,7 +29,7 @@
 		<? if ($organization['Organization']['address'] != null) {
 			echo $organization['Organization']['address'];
 		} else {
-			echo "We don't have an address for this organization yet - could you add one?";
+			echo "We don't have an address for this organization yet - why not help out and " . $this->Html->link('add one', array("action" => "edit", $organization['Organization']['id'])) . "?";
 		} ?>
 		</p></em>
 	</div>
