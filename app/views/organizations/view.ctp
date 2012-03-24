@@ -36,7 +36,9 @@
 		</p></em>
 	</div>
 		<div class="related">
-		<h3><?php __('Subjects');?></h3>
+		<h3><?php __('Subjects');?>
+			<?php echo $this->bootstrap->linkWithIcon('Add', array('controller' => 'subjects', 'action' => 'add'), array("class" => "btn", "icon" => "icon-file"));?> 
+		</h3>
 		<?php if (!empty($organization['Subject'])):?>
 		<table cellpadding = "0" cellspacing = "0">
 		<?php
@@ -50,14 +52,10 @@
 			<tr<?php echo $class;?>>
 					
 				<td><?php echo $this->Html->link(__($subject['name'], true), array('controller' => 'subjects', 'action' => 'view', $subject['id'])); ?></td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('Edit', true), array('controller' => 'subjects', 'action' => 'edit', $subject['id'])); ?>
-				</td>
 			</tr>
 		<?php endforeach; ?>
 		</table>
 	<?php endif; ?>
-		<?php echo $this->Html->link(__('New Subject', true), array('controller' => 'subjects', 'action' => 'add'), array("class" => "btn"));?> 
 	</div>
 	<div class="related">
 		<h3><?php __('Users following this organization');?></h3>
