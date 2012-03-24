@@ -26,8 +26,10 @@
 	<div>
 		<h3>Address</h3>
 		<p><em>
-		<? if ($organization['Organization']['address'] != null) {
-			echo $organization['Organization']['address'];
+			<? 
+			$address = $organization['Organization']['address'];
+			if ($address != null) {
+			echo $this->map->locationMap($address);
 		} else {
 			echo "We don't have an address for this organization yet - why not help out and " . $this->Html->link('add one', array("action" => "edit", $organization['Organization']['id'])) . "?";
 		} ?>

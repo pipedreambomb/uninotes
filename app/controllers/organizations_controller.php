@@ -2,7 +2,7 @@
 class OrganizationsController extends AppController {
 
 	var $name = 'Organizations';
-	var $helpers = array('lists');
+	var $helpers = array('map', 'lists');
         
         public function beforeFilter() {
             parent::beforeFilter();
