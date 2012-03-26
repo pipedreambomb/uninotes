@@ -1,6 +1,9 @@
+<? //since we use a tab pane on this page, include tabs.js, my JS tab handler
+	echo $this->Html->script('tabs.js'); 
+?>
 <div class="container-fluid organizations view">
 <div class="row">
-<div class="span7 offset2">
+<div class="span8 offset2">
 <!--Sidebar content--> 
 	<h1><?php echo $organization['Organization']['name']; ?>
 		<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $organization['Organization']['id']), array("class" => "btn btn-primary")); ?></h1>
@@ -16,26 +19,19 @@
 			echo $this->Html->link($organization['Link']['url'], array('controller' => 'links', 'action' => 'go', $organization['Link']['id']));
 		} ?>
 	</div>
-	<div>
+    <ul class="nav nav-tabs">
+	    <li class="active" id="activity_tab">
+		    <a href="#">Activity</a>
+	    </li>
+	    <li id="subjects_tab">
+		<a href="#">Subjects</a>
+	    </li>
+    </ul>
+	<div class="tabbed_content" id="activity">
 		<h2>Recent Activity</h2>
 		To come: organization activity will go here
 	</div>
-</div>
-<div class="main span5">
-<!--Body content-->
-	<div>
-		<h3>Address</h3>
-		<p><em>
-			<? 
-			$address = $organization['Organization']['address'];
-			if ($address != null) {
-			echo $this->map->locationMap($address);
-		} else {
-			echo "We don't have an address for this organization yet - why not help out and " . $this->Html->link('add one', array("action" => "edit", $organization['Organization']['id'])) . "?";
-		} ?>
-		</p></em>
-	</div>
-		<div class="related">
+	<div class="related tabbed_content" id="subjects">
 		<h3><?php __('Subjects');?>
 			<?php echo $this->bootstrap->linkWithIcon('Add', array('controller' => 'subjects', 'action' => 'add'), array("class" => "btn", "icon" => "icon-file"));?> 
 		</h3>
@@ -56,6 +52,21 @@
 		<?php endforeach; ?>
 		</table>
 	<?php endif; ?>
+	</div>
+</div>
+<div class="main span4">
+<!--Body content-->
+	<div>
+		<h3>Address</h3>
+		<p><em>
+			<? 
+			$address = $organization['Organization']['address'];
+			if ($address != null) {
+			echo $this->map->locationMap($address);
+		} else {
+			echo "We don't have an address for this organization yet - why not help out and " . $this->Html->link('add one', array("action" => "edit", $organization['Organization']['id'])) . "?";
+		} ?>
+		</p></em>
 	</div>
 	<div class="related">
 		<h3><?php __('Users following this organization');?></h3>
