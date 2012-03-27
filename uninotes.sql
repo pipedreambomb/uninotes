@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2012 at 05:20 PM
--- Server version: 5.1.58
+-- Generation Time: Mar 27, 2012 at 03:07 PM
+-- Server version: 5.1.61
 -- PHP Version: 5.3.6-13ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -147,21 +147,24 @@ CREATE TABLE IF NOT EXISTS `links` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(2000) NOT NULL,
   `text` varchar(200) DEFAULT NULL,
+  `organization_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `links`
 --
 
-INSERT INTO `links` (`id`, `url`, `text`) VALUES
-(2, 'http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=a.d.preece', ''),
-(5, 'http://bbc.co.uk', 'BBC Homepage'),
-(6, 'georgenixon.co.uk', ''),
-(7, 'www.bbc.co.uk', ''),
-(8, 'http.com', ''),
-(10, 'georgenixon.co.uk', 'George''s site'),
-(12, 'youtube.com', 'YouTube');
+INSERT INTO `links` (`id`, `url`, `text`, `organization_id`) VALUES
+(2, 'http://www.cs.cf.ac.uk/contactsandpeople/staffpage.php?emailname=a.d.preece', '', NULL),
+(5, 'http://bbc.co.uk', 'BBC Homepage', NULL),
+(6, 'georgenixon.co.uk', '', NULL),
+(7, 'www.bbc.co.uk', '', NULL),
+(8, 'http.com', '', NULL),
+(10, 'georgenixon.co.uk', 'George''s site', NULL),
+(12, 'youtube.com', 'YouTube', NULL),
+(30, 'http://www.tautologyclub.com', NULL, 17),
+(29, 'http://www.cardiff.ac.uk', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -182,28 +185,6 @@ CREATE TABLE IF NOT EXISTS `links_events` (
 
 INSERT INTO `links_events` (`id`, `link_id`, `event_id`) VALUES
 (1, 5, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `links_organizations`
---
-
-CREATE TABLE IF NOT EXISTS `links_organizations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `link_id` int(11) NOT NULL,
-  `organization_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `links_organizations`
---
-
-INSERT INTO `links_organizations` (`id`, `link_id`, `organization_id`) VALUES
-(3, 2, 1),
-(4, 8, 3),
-(5, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -254,16 +235,26 @@ CREATE TABLE IF NOT EXISTS `links_users` (
 CREATE TABLE IF NOT EXISTS `organizations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
+  `description` varchar(2000) DEFAULT NULL,
+  `address` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `organizations`
 --
 
-INSERT INTO `organizations` (`id`, `name`) VALUES
-(1, 'Cardiff University'),
-(3, 'UWIC');
+INSERT INTO `organizations` (`id`, `name`, `description`, `address`) VALUES
+(1, 'Cardiff University', 'The best university in Wales!\r\n\r\nEver!', 'Cardiff University\r\nCardiff\r\nWales\r\nCF10 3XQ\r\nUK'),
+(3, 'UWIC', '', ''),
+(5, 'dfg', 'fdg', ''),
+(13, 'rtydtrh', 'rdthdfhg', 'rtdhtrdh'),
+(7, 'fdgd', 'fgsdgfd', ''),
+(8, 'etsahgreshrdtsh', 'fdshfdshfddfsh', ''),
+(9, '32432434', '324ewrwr', ''),
+(10, 'swdefewaf', 'sdfewsf', ''),
+(12, 'Wembley FC', 'gdef', 'fdgfdg'),
+(17, 'Tautology club', '', '10 Downing Street,\r\nLondon,\r\nUk');
 
 -- --------------------------------------------------------
 
