@@ -7,7 +7,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('description', array("type" => "textarea"));
+		echo $this->Form->input('description', array("label"=>"Description (optional)", "type" => "textarea"));
 		echo $this->Form->input('address', array("type" => "textarea"));
 		echo $this->Form->input('Link.url');
 		echo $this->Form->hidden('Link.id');

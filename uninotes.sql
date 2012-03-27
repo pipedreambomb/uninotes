@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2012 at 03:07 PM
+-- Generation Time: Mar 27, 2012 at 07:43 PM
 -- Server version: 5.1.61
 -- PHP Version: 5.3.6-13ubuntu3.6
 
@@ -128,14 +128,18 @@ CREATE TABLE IF NOT EXISTS `events` (
   `subject_id` bigint(20) NOT NULL,
   `textual_notes` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`id`, `name`, `datetime`, `subject_id`, `textual_notes`) VALUES
-(1, 'Lecture 2 - Oracle OODB', '2011-11-10 14:35:00', 1, 'Here are some notes from today''s lecture:\r\n\r\n1) Things are awesome.\r\n2) awesome things are awesome\r\n3) coursework is out and due in 2013.');
+(1, 'Lecture 2 - Oracle OODB', '2011-11-10 14:35:00', 1, 'Here are some notes from today''s lecture:\r\n\r\n1) Things are awesome.\r\n2) awesome things are awesome\r\n3) coursework is out and due in 2013.'),
+(2, 'fsdgsdfdsf', '2012-03-27 19:32:00', 12, NULL),
+(3, 'Lesson 1: Lesson 1', '2012-03-27 19:37:00', 12, NULL),
+(4, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12, NULL),
+(5, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -266,17 +270,19 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `organization_id` int(11) NOT NULL,
+  `description` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `organization_id`) VALUES
-(1, 'Database Management', 1),
-(2, 'Multimedia', 1),
-(3, 'Artificial Intelligence', 3);
+INSERT INTO `subjects` (`id`, `name`, `organization_id`, `description`) VALUES
+(1, 'Database Management', 1, 'management of databases, obviously'),
+(2, 'Multimedia', 1, NULL),
+(3, 'Artificial Intelligence', 3, NULL),
+(12, 'Tautology lessons', 17, '');
 
 -- --------------------------------------------------------
 

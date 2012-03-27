@@ -4,7 +4,6 @@
 <div class="container-fluid organizations view">
 <div class="row">
 <div class="span8 offset2">
-<!--Sidebar content--> 
 	<h1><?php echo $organization['Organization']['name']; ?>
 		<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $organization['Organization']['id']), array("class" => "btn btn-primary")); ?></h1>
 	<div>
@@ -34,7 +33,7 @@
 	</div>
 	<div class="related tabbed_content" id="subjects">
 		<h3><?php __('Subjects');?>
-			<?php echo $this->bootstrap->linkWithIcon('Add', array('controller' => 'subjects', 'action' => 'add'), array("class" => "btn", "icon" => "icon-file"));?> 
+			<?php echo $this->bootstrap->linkWithIcon('Add', array('controller' => 'subjects', 'action' => 'add', $organization['Organization']['id']), array("class" => "btn", "icon" => "icon-file"));?> 
 		</h3>
 		<?php if (!empty($organization['Subject'])):?>
 		<table cellpadding = "0" cellspacing = "0">

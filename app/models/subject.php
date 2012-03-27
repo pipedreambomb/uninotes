@@ -81,5 +81,9 @@ class Subject extends AppModel {
 			'insertQuery' => ''
 		)
 	);
-        
+       /* 
+	function beforeSave($options) {
+		debug($this->data);
+		return false;
+}*/
 }

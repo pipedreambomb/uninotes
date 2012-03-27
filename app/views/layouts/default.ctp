@@ -61,12 +61,6 @@
                         <li>
                             <? echo $this->Html->link('Organizations', array('controller' => 'organizations', 'action' => 'index'));?>
 			</li>
-			<li>
-                            <? echo $this->Html->link('Subjects', array('controller' => 'subjects', 'action' => 'index'));?>
-                        </li>
-                        <li>
-                            <? echo $this->Html->link('Events', array('controller' => 'events', 'action' => 'index'));?>
-                        </li>
                         <li>
                             <? echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index'));?>
                         </li>

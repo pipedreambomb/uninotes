@@ -9,9 +9,9 @@ class EventsController extends AppController {
             $this->Auth->allow('index', 'view');
         }
 
+	// deprecated index for Events, go through its parent Subject instead
 	function index() {
-		$this->Event->recursive = 0;
-		$this->set('events', $this->paginate());
+		$this->goHome();
 	}
 
 	function view($id = null) {
@@ -22,20 +22,29 @@ class EventsController extends AppController {
 		$this->set('event', $this->Event->read(null, $id));
 	}
 
-	function add() {
+	function add($id = null) {
+		if (!$id && empty($this->data)) {
+		    $this->Session->setFlash(__('Invalid event', true));
+		    $this->redirect(array('action' => 'index'));
+		}
 		if (!empty($this->data)) {
-			$this->Event->create();
-			if ($this->Event->save($this->data)) {
-				$this->Session->setFlash(__('The event has been saved', true));
-				$this->redirect(array('action' => 'index'));
+		    $this->Event->create();
+		    if ($this->Event->saveAll($this->data)) {
+			$this->Session->setFlash(__('The event has been saved', true));
+			$this->redirect(array('controller' => 'subjects', 'action' => 'view', $this->data['Event']['subject_id']));
+		    } else {
+			$this->Session->setFlash(__('The event could not be saved. Please, try again.', true));
+		    }
+		}
+		if (isset($id)) {
+			$subj = $this->Event->Subject->findById($id);
+			if ($subj != null) {
+				$this->set('subject', $subj);
 			} else {
-				$this->Session->setFlash(__('The event could not be saved. Please, try again.', true));
+			    $this->Session->setFlash(__('Invalid subject', true));
+			    $this->redirect(array('action' => 'index'));
 			}
 		}
-		$subjects = $this->Event->Subject->find('list');
-		$links = $this->Event->Link->find('list');
-		$users = $this->Event->User->find('list');
-		$this->set(compact('subjects', 'links', 'users'));
 	}
 
 	function edit($id = null) {

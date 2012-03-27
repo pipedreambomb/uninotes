@@ -5,10 +5,8 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		//TODO Maybe make this read-only?
-		echo $this->Form->input('organization_id');
-		//echo $this->Form->input('Link');
-		//echo $this->Form->input('User');
+		echo $this->Form->input('description', array("label"=>"Description (optional)", "type" => "textarea"));
+		echo $this->Form->input('organization_id', array('disabled' => true));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

@@ -10,9 +10,10 @@ class SubjectsController extends AppController {
         $this->Auth->allow('index', 'view');
     }
 
+	//No longer need an index page for subjects, should only access
+	//them through their parent organization
     function index() {
-        $this->Subject->recursive = 0;
-        $this->set('subjects', $this->paginate());
+	    $this->goHome();
     }
 
     function view($id = null) {
@@ -23,20 +24,30 @@ class SubjectsController extends AppController {
         $this->set('subject', $this->Subject->read(null, $id));
     }
 
-    function add() {
+    function add($id = null) {
+        if (!$id && empty($this->data)) {
+            $this->Session->setFlash(__('Invalid organization', true));
+            $this->redirect(array('action' => 'index'));
+        }
         if (!empty($this->data)) {
             $this->Subject->create();
             if ($this->Subject->save($this->data)) {
                 $this->Session->setFlash(__('The subject has been saved', true));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('controller' => 'organizations', 'action' => 'view', $this->data['Organization']['id']));
             } else {
                 $this->Session->setFlash(__('The subject could not be saved. Please, try again.', true));
             }
         }
-        $organizations = $this->Subject->Organization->find('list');
-        $links = $this->Subject->Link->find('list');
-        $users = $this->Subject->User->find('list');
-        $this->set(compact('organizations', 'links', 'users'));
+	if (isset($id)) {
+		$org = $this->Subject->Organization->findById($id);
+		if ($org != null) {
+			$this->set('organization', $org);
+		} else {
+		    $this->Session->setFlash(__('Invalid organization', true));
+		    $this->redirect(array('action' => 'index'));
+		}
+	}
+		
     }
 
     function edit($id = null) {
@@ -45,9 +56,9 @@ class SubjectsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {
-            if ($this->Subject->save($this->data)) {
+            if ($this->Subject->saveAll($this->data)) {
                 $this->Session->setFlash(__('The subject has been saved', true));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'view', $this->data['Subject']['id']));
             } else {
                 $this->Session->setFlash(__('The subject could not be saved. Please, try again.', true));
             }

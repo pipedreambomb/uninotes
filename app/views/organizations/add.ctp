@@ -4,8 +4,8 @@
 		<legend><?php __('Add Organization'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('address');
+		echo $this->Form->input('description', array("label"=>"Description (optional)", "type" => "textarea"));
+		echo $this->Form->input('address', array("type" => "textarea"));
 		echo $this->Form->input('Link.url');
 	?>
 	</fieldset>
