@@ -14,3 +14,7 @@ div.image-holder img {
 	height: 200px;
 	width: 100%;
 }
+
+.tabbed_content { 
+	display: none;
+}

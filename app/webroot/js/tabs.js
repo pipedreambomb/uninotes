@@ -1,6 +1,8 @@
 // JavaScript for handling tabbed content panes
 $(document).ready(function(){
 	
+	$("#javascript_warning").hide();
+
 	// When a tab heading is clicked
 	$(".nav-tabs li").click(function(clickEvent) {
 		// Make it look like the active tab
@@ -12,7 +14,6 @@ $(document).ready(function(){
 		$("#" + id).show();
        	}); 
 	
-	// On doc load, hide all tabbed content and then just show first one
-	$(".tabbed_content").hide();
+	// On doc load, show first tabbed pane
 	$(".nav-tabs li a").first().trigger("click");
 });
