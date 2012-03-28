@@ -7,7 +7,6 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('datetime');
 		echo $this->Form->input('subject_id');
-		echo $this->Form->input('textual_notes');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

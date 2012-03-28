@@ -5,9 +5,10 @@
 <div class="row">
 <div class="span8 offset2">
 <div class="events view">
-<h2>
+<h1>
 	<?php echo $event['Event']['name']; ?>
-</h2>
+	<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $event['Event']['id']), array("class" => "btn btn-primary")); ?> 
+</h1>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			&nbsp;

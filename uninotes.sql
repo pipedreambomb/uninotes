@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2012 at 07:43 PM
+-- Generation Time: Mar 28, 2012 at 02:24 PM
 -- Server version: 5.1.61
 -- PHP Version: 5.3.6-13ubuntu3.6
 
@@ -126,7 +126,6 @@ CREATE TABLE IF NOT EXISTS `events` (
   `name` varchar(200) NOT NULL,
   `datetime` datetime DEFAULT NULL,
   `subject_id` bigint(20) NOT NULL,
-  `textual_notes` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -134,12 +133,12 @@ CREATE TABLE IF NOT EXISTS `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `name`, `datetime`, `subject_id`, `textual_notes`) VALUES
-(1, 'Lecture 2 - Oracle OODB', '2011-11-10 14:35:00', 1, 'Here are some notes from today''s lecture:\r\n\r\n1) Things are awesome.\r\n2) awesome things are awesome\r\n3) coursework is out and due in 2013.'),
-(2, 'fsdgsdfdsf', '2012-03-27 19:32:00', 12, NULL),
-(3, 'Lesson 1: Lesson 1', '2012-03-27 19:37:00', 12, NULL),
-(4, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12, NULL),
-(5, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12, NULL);
+INSERT INTO `events` (`id`, `name`, `datetime`, `subject_id`) VALUES
+(1, 'Lecture 2 - Oracle OODB', '2011-11-10 14:35:00', 1),
+(2, 'fsdgsdfdsf', '2012-03-27 19:32:00', 12),
+(3, 'Lesson 1: Lesson 1', '2012-03-27 19:37:00', 12),
+(4, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12),
+(5, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12);
 
 -- --------------------------------------------------------
 
@@ -153,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `text` varchar(200) DEFAULT NULL,
   `organization_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `links`
@@ -167,6 +166,8 @@ INSERT INTO `links` (`id`, `url`, `text`, `organization_id`) VALUES
 (8, 'http.com', '', NULL),
 (10, 'georgenixon.co.uk', 'George''s site', NULL),
 (12, 'youtube.com', 'YouTube', NULL),
+(32, 'http://thewebisboring.com', '', NULL),
+(31, 'http://xkcd.com/703/', 'The inspiration for Tautology Club', NULL),
 (30, 'http://www.tautologyclub.com', NULL, 17),
 (29, 'http://www.cardiff.ac.uk', NULL, 1);
 
@@ -181,14 +182,15 @@ CREATE TABLE IF NOT EXISTS `links_events` (
   `link_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `links_events`
 --
 
 INSERT INTO `links_events` (`id`, `link_id`, `event_id`) VALUES
-(1, 5, 1);
+(1, 5, 1),
+(2, 31, 3);
 
 -- --------------------------------------------------------
 
@@ -201,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `links_subjects` (
   `link_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `links_subjects`
@@ -210,6 +212,7 @@ CREATE TABLE IF NOT EXISTS `links_subjects` (
 INSERT INTO `links_subjects` (`id`, `link_id`, `subject_id`) VALUES
 (2, 2, 1),
 (3, 3, 1),
+(8, 32, 12),
 (7, 12, 2);
 
 -- --------------------------------------------------------
@@ -279,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `name`, `organization_id`, `description`) VALUES
-(1, 'Database Management', 1, 'management of databases, obviously'),
+(1, 'Database Management', 1, 'management of databases,'),
 (2, 'Multimedia', 1, NULL),
 (3, 'Artificial Intelligence', 3, NULL),
 (12, 'Tautology lessons', 17, '');
@@ -361,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `users_subjects` (
   `user_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `users_subjects`
@@ -369,4 +372,5 @@ CREATE TABLE IF NOT EXISTS `users_subjects` (
 
 INSERT INTO `users_subjects` (`id`, `user_id`, `subject_id`) VALUES
 (1, 1, 1),
-(8, 4, 1);
+(9, 4, 1),
+(10, 4, 12);
