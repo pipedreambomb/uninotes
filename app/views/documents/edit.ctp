@@ -1,4 +1,5 @@
-<div class="links form">
+<div class="row">
+<div class="links form hero-unit span4 offset5">
 <?php echo $this->Form->create('Document');?>
 	<fieldset>
 		<legend><?php __('Edit Document'); ?></legend>
@@ -9,4 +10,5 @@
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
+</div>
 </div>

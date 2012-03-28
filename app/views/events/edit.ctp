@@ -9,7 +9,7 @@
 	$this->Js->buffer("$('#picker').datetimepicker();");
 ?>
 <div class="row">
-<div class="events form hero-unit span4 offset4">
+<div class="events form span4 offset5 hero-unit">
 <?php echo $this->Form->create('Event');?>
 	<fieldset>
 		<legend><?php __('Edit Event'); ?></legend>

@@ -8,7 +8,8 @@
 	//set picker to work on field with id picker, created below
 	$this->Js->buffer("$('#picker').datetimepicker();");
 ?>
-<div class="events form">
+<div class="row">
+<div class="events form span4 offset5 hero-unit">
 <?php echo $this->Form->create('Event');?>
 	<fieldset>
 		<legend><?php __('Add Event'); ?></legend>
@@ -23,4 +24,5 @@
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
+</div>
 </div>
