@@ -2,17 +2,12 @@
 class Event extends AppModel {
 	var $name = 'Event';
 	var $displayField = 'name';
+	var $virtualFields = array(
+		//use MySQL directly to create a pseudo field, in this case representing
+		//the date as a string
+		'datestr' => "DATE_FORMAT(Event.datetime, '%m/%d/%Y %H:%i')"
+	    );
 	var $validate = array(
-		'name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'subject_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -84,4 +79,19 @@ class Event extends AppModel {
 		)
 	);
 
+	function beforeSave($options) {
+
+		$success = false;
+		
+		// Attempt to convert the date text field into a datetime for the database
+		if ($newDateTime = $this->data['Event']['newDateTime']) {
+			if ($timestamp = strtotime($this->data['Event']['newDateTime']))  {
+				$this->data['Event']['datetime'] = date('Y-m-d H:i:s', $timestamp);
+				debug($this->data);
+				$success = true;
+			}		
+		}
+
+		return $success;
+	}
 }

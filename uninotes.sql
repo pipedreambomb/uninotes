@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2012 at 02:24 PM
+-- Generation Time: Mar 28, 2012 at 09:27 PM
 -- Server version: 5.1.61
 -- PHP Version: 5.3.6-13ubuntu3.6
 
@@ -123,22 +123,24 @@ INSERT INTO `documents_subjects` (`id`, `document_id`, `subject_id`) VALUES
 
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
+  `name` varchar(200) DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
+  `duration` varchar(10) DEFAULT NULL,
   `subject_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `name`, `datetime`, `subject_id`) VALUES
-(1, 'Lecture 2 - Oracle OODB', '2011-11-10 14:35:00', 1),
-(2, 'fsdgsdfdsf', '2012-03-27 19:32:00', 12),
-(3, 'Lesson 1: Lesson 1', '2012-03-27 19:37:00', 12),
-(4, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12),
-(5, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', 12);
+INSERT INTO `events` (`id`, `name`, `datetime`, `duration`, `subject_id`) VALUES
+(1, 'Lecture 2 - Oracle OODB', '2011-11-10 14:35:00', NULL, 1),
+(2, '', '2012-03-15 10:00:00', '8', 12),
+(3, 'Lesson 1: Lesson 1', '2012-03-27 19:37:00', '4', 12),
+(4, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', NULL, 12),
+(5, '', '2012-03-27 19:37:00', NULL, 12),
+(6, '', '2012-03-31 09:00:00', '1', 12);
 
 -- --------------------------------------------------------
 

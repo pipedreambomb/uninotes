@@ -52,21 +52,24 @@ class EventsController extends AppController {
 			$this->Session->setFlash(__('Invalid event', true));
 			$this->redirect(array('action' => 'index'));
 		}
+
+		$defaultDate = "";
 		if (!empty($this->data)) {
 			if ($this->Event->save($this->data)) {
 				$this->Session->setFlash(__('The event has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->data['Event']['id']));
 			} else {
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.', true));
 			}
-		}
-		if (empty($this->data)) {
+		} else {
 			$this->data = $this->Event->read(null, $id);
+			$defaultDate = $this->data['Event']['datestr'];
 		}
+
 		$subjects = $this->Event->Subject->find('list');
 		$links = $this->Event->Link->find('list');
 		$users = $this->Event->User->find('list');
-		$this->set(compact('subjects', 'links', 'users'));
+		$this->set(compact('subjects', 'links', 'users', 'defaultDate'));
 	}
 
 	function delete($id = null) {

@@ -5,25 +5,17 @@
 <div class="row">
 <div class="span8 offset2">
 <div class="events view">
+breadcrumbs go here > <?php echo $this->Html->link($event['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $event['Subject']['id'])); ?>
 <h1>
-	<?php echo $event['Event']['name']; ?>
+	<?php if($name = $event['Event']['name']) {
+		echo $name;
+	      } else {
+		echo "Event (" . $event['Subject']['name'] . ")";
+	      }
+?>
 	<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $event['Event']['id']), array("class" => "btn btn-primary")); ?> 
 </h1>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Datetime'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $event['Event']['datetime']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Subject'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($event['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $event['Subject']['id'])); ?>
-			&nbsp;
-		</dd>
-	</dl>
 </div>
     <ul class="nav nav-tabs">
 	    <li class="active" id="activity_tab">
