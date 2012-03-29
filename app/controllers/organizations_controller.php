@@ -3,7 +3,8 @@ class OrganizationsController extends AppController {
 
 	var $name = 'Organizations';
 	var $helpers = array('map', 'lists', 'bootstrap');
-        
+        var $EMPTY_URL = "http://uninot.es/empty_url";
+
         public function beforeFilter() {
             parent::beforeFilter();
             $this->Auth->allow('index', 'view');
@@ -19,7 +20,11 @@ class OrganizationsController extends AppController {
 			$this->Session->setFlash(__('Invalid organization', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('organization', $this->Organization->read(null, $id));
+		$organization = $this->Organization->read(null, $id);
+		if($organization['Link']['url'] == $this->EMPTY_URL) {
+			$organization['Link']['url'] = "";
+		}
+		$this->set(compact('organization'));
 	}
 
 	function add() {
@@ -46,6 +51,12 @@ class OrganizationsController extends AppController {
 			 if (isset( $this->params['form']['cancel'])) {
 				 $this->redirect( array( 'action' => 'view', $this->data['Organization']['id']));
 			     }
+			 // Validation of Link model means url can't be empty.
+			 // This is a hack, sets it to this special url which we will
+			 // screen for before passing to views, and pass an empty string instead
+			 if($this->data['Link']['url'] == "") {
+				$this->data['Link']['url'] = $this->EMPTY_URL;
+			 }
 			if ($this->Organization->saveAll($this->data)) {
 				$this->Session->setFlash(__('The organization has been saved', true));
 				$this->redirect(array('action' => 'view', $this->data['Organization']['id']));
@@ -54,7 +65,11 @@ class OrganizationsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->Organization->read(null, $id);
+			$organization = $this->Organization->read(null, $id);
+			if($organization['Link']['url'] == $this->EMPTY_URL) {
+				$organization['Link']['url'] = "";
+			}
+			$this->data = $organization;
 		}
 		$links = $this->Organization->Link->find('list');
 		$users = $this->Organization->User->find('list');

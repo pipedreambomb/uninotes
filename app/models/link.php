@@ -7,21 +7,14 @@ class Link extends AppModel {
 			'url' => array(
 				'rule' => array('url'),
 				'message' => 'Must be a valid URL (e.g. \'http://www.example.com\')',
-				//'allowEmpty' => false,
+				'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		)
 	);
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
@@ -83,12 +76,11 @@ class Link extends AppModel {
 	);
 
 	function beforeSave($options) {
-
-		$this->data['Link']['url'] = $this->_addHttpPrefix($this->data['Link']['url']);	
-
+		$this->data['Link']['url'] = $this->_addHttpPrefix($this->data['Link']['url']);
 		return true;
 	}
 
+	// Add http:// to the front of links if they don't already have it
 	private function _addHttpPrefix($url) {
 		$_httpPrefix = 'http://';
 		$res = $url;
