@@ -20,9 +20,9 @@
 		echo $form->hidden('subject_id', array( 'value' => $subject['Subject']['id']));
 		echo $this->Form->input('newDateTime', array('id' => 'picker', 'label' => 'Date & Time (US calendar format)'));
 		$options = array('' => null, '30 mins', '1 hour', '1 hour 30 mins', '2 hours', '2 hours 30 mins', '3 hours', '4 hours', '6 hours', '1 day');
-	 	echo $this->Form->input('duration', array('type'=>'select', 'options'=>$options));
+		echo $this->Form->input('duration', array('type'=>'select', 'options'=>$options));
+		echo $this->general->formButtons();
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
 </div>
 </div>

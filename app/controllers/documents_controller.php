@@ -19,6 +19,11 @@ class DocumentsController extends AppController {
 
 	function add($type, $id) {
 		if (!empty($this->data)) {
+		    if (isset( $this->params['form']['cancel'])) {
+			 $targetType = $this->data['Document']['targetType'];
+			 $controller = Inflector::pluralize($targetType);
+			 $this->redirect( array('controller' => $controller, 'action' => 'view', $this->data[$targetType]['id']));
+		     }
 			$this->Document->create();
 			if ($this->Document->save($this->data)) {
 				$this->Session->setFlash(__('The document has been saved', true));
@@ -38,6 +43,9 @@ class DocumentsController extends AppController {
 			$this->go404();
 		}
 		if (!empty($this->data)) {
+		    if (isset( $this->params['form']['cancel'])) {
+			$this->redirect(array('action' => 'go', $this->Document->id));
+		     }
 			if ($this->Document->save($this->data)) {
 				$this->Session->setFlash(__('The document has been saved', true));
 				$this->redirect(array('action' => 'go', $this->Document->id));
@@ -48,10 +56,8 @@ class DocumentsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Document->read(null, $id);
 		}
-		$events = $this->Document->Event->find('list');
-		$organizations = $this->Document->Organization->find('list');
-		$subjects = $this->Document->Subject->find('list');
-		$this->set(compact('events', 'organizations', 'subjects'));
+		$target = $this->Document->getExistingTarget($id);
+		$this->set(compact('target'));
 	}
 
 	private function _checkExists($id) {

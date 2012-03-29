@@ -18,3 +18,8 @@ div.image-holder img {
 .tabbed_content { 
 	display: none;
 }
+
+.btn-float {
+	float: left;
+	margin-right: 1em;
+}

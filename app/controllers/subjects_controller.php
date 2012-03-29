@@ -18,7 +18,7 @@ class SubjectsController extends AppController {
 
     function view($id = null) {
         if (!$id) {
-            $this->Session->setFlash(__('Invalid subject', true));
+            $this->Session->setFlash(__('Invalid subject (' . $id . ')' , true));
             $this->redirect(array('action' => 'index'));
         }
         $this->set('subject', $this->Subject->read(null, $id));
@@ -30,6 +30,9 @@ class SubjectsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {
+	    if (isset( $this->params['form']['cancel'])) {
+		 $this->redirect( array('controller' => 'organizations', 'action' => 'view', $this->data['organization']['id']));
+	     }
             $this->Subject->create();
             if ($this->Subject->save($this->data)) {
                 $this->Session->setFlash(__('The subject has been saved', true));
@@ -56,6 +59,9 @@ class SubjectsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {
+	    if (isset( $this->params['form']['cancel'])) {
+		 $this->redirect( array( 'action' => 'view', $this->data['Subject']['id']));
+	     }
             if ($this->Subject->saveAll($this->data)) {
                 $this->Session->setFlash(__('The subject has been saved', true));
                 $this->redirect(array('action' => 'view', $this->data['Subject']['id']));

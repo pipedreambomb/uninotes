@@ -15,7 +15,7 @@ function cakebootstrap()
 //All submit forms wrapped to div.action
 $('input][type="submit"][class!="btn btn-primary"]').wrap('<div class="actions" />');
 //All submit forms converted to primary button
-$('input[type="submit"]').addClass('btn btn-primary');
+$('input[type="submit"]').addClass('btn');
 //All index actions converted into pretty buttons
 $('td][class="actions"] > a[class!="btn"]').addClass('btn');
 

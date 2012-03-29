@@ -24,6 +24,9 @@ class OrganizationsController extends AppController {
 
 	function add() {
 		if (!empty($this->data)) {
+			 if (isset( $this->params['form']['cancel'])) {
+				 $this->redirect( array('controller' => 'organizations', 'action' => 'index'));
+			     }
 			$this->Organization->create();
 			if ($this->Organization->saveAll($this->data)) {
 				$this->Session->setFlash(__('The organization has been saved', true));
@@ -40,6 +43,9 @@ class OrganizationsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			 if (isset( $this->params['form']['cancel'])) {
+				 $this->redirect( array( 'action' => 'view', $this->data['Organization']['id']));
+			     }
 			if ($this->Organization->saveAll($this->data)) {
 				$this->Session->setFlash(__('The organization has been saved', true));
 				$this->redirect(array('action' => 'view', $this->data['Organization']['id']));

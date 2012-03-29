@@ -28,6 +28,9 @@ class EventsController extends AppController {
 		    $this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+		    if (isset( $this->params['form']['cancel'])) {
+			 $this->redirect( array('controller' => 'subjects', 'action' => 'view', $this->data['Event']['subject_id']));
+		     }
 		    $this->Event->create();
 		    if ($this->Event->saveAll($this->data)) {
 			$this->Session->setFlash(__('The event has been saved', true));
@@ -55,6 +58,9 @@ class EventsController extends AppController {
 
 		$defaultDate = "";
 		if (!empty($this->data)) {
+		    if (isset( $this->params['form']['cancel'])) {
+			 $this->redirect( array( 'action' => 'view', $this->data['Event']['id']));
+		     }
 			if ($this->Event->save($this->data)) {
 				$this->Session->setFlash(__('The event has been saved', true));
 				$this->redirect(array('action' => 'view', $this->data['Event']['id']));

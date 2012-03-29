@@ -8,8 +8,8 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array("label"=>"Description (optional)", "type" => "textarea"));
+		echo $this->general->formButtons();
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
 </div>
 </div>

@@ -8,8 +8,8 @@
 		echo $this->Form->input('description', array("rows" => 3, "label"=>"Description (optional)", "type" => "textarea"));
 		echo $this->Form->input('address', array("label" => "Address (optional)", "rows" => 3, "type" => "textarea"));
 		echo $this->Form->input('Link.url', array("label" => "Website (optional)"));
+		echo $this->general->formButtons();
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
 </div>
 </div>
