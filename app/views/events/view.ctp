@@ -15,7 +15,15 @@ breadcrumbs go here > <?php echo $this->Html->link($event['Subject']['name'], ar
 ?>
 	<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $event['Event']['id']), array("class" => "btn btn-primary")); ?> 
 </h1>
-			<?php echo $event['Event']['datetime']; ?>
+<br />
+<?php  
+	if(isset($event['Event']['date_nice_str'])) {
+		echo "<p><strong>When: </strong>" . $event['Event']['date_nice_str'] . "</p>";
+	}
+	if(isset($event['Event']['duration'])) {
+		echo "<p><strong>Duration: </strong>" . $event['Event']['duration'] . "</p>";
+	}
+?>
 </div>
     <ul class="nav nav-tabs">
 	    <li class="active" id="activity_tab">
