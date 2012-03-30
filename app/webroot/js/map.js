@@ -26,7 +26,11 @@
           address,
           function(point) {
             if (!point) {
-              alert(address + " not found");
+		    // Could not geocode the address, so state this and give a link to change address for organization
+		    var url = $("a#edit_org_btn").attr("href");
+		    var editLink = "<a href='" + url + "'>correcting</a>";
+		    $("#map_canvas").html("<em>" + address + " (Map could not be found for this organization, does this address need " + editLink + "?)</em>")
+				.css('background-color', '#FFF');
             } else {
               map.setCenter(point, 15);
 		map.setZoom(7);
