@@ -1,12 +1,14 @@
-<div id="home">
+<div class="container">
+<div class="row-fluid">
+<div class="span6">
 	
-<div id="gdocs_preview">
-<h1>Preview:</h1>
-<iframe src="http://docs.google.com/viewer?url=<? echo urlencode($document['Document']['url_pdf']); ?>&embedded=true" width="500" height="300"></iframe>
-</div>	
 	<h1>External document: <? echo $document['Document']['text']; ?></h1>
-	
-	<p>Continue to Google Docs to view <? if($user['google_id'] != null) echo "and edit "; ?><strong>"<? echo $document['Document']['text']; ?>"</strong><? if($user['google_id'] != null) echo "(" . $this->Html->link("edit title", array('action' => 'edit', $document['Document']['id'])). ")"; ?>.</p>
+	<br />	
+	<p>Continue to Google Docs to view <? if($user['google_id'] != null) echo "and edit "; ?><strong>"<? echo $document['Document']['text']; ?>"</strong>
+	<? if($user['google_id'] != null) {
+		echo $this->Html->link("Edit Title", array('action' => 'edit', $document['Document']['id']), array('class' => 'btn btn-primary')); 
+	}?>
+	</p>
 <div>
 <? 	if($user['google_id'] == null) :
 ?><p>
@@ -16,7 +18,7 @@
 	echo $this->Html->link(
 			"View read only",
 			$document['Document']['url'],
-			array('class' => 'btn',
+			array('class' => 'btn btn-primary',
 				'target' => '_blank')
 		); ?>
 </p><?
@@ -28,7 +30,7 @@ As you have associated the Google account <strong>"<? echo $user['google_id'] ?>
 	echo $this->Html->link(
 			"View and Edit document",
 			$document['Document']['url'],
-			array('class' => 'btn',
+			array('class' => 'btn btn-primary',
 				'target' => '_blank')
 		); ?>
 </p><?
@@ -37,4 +39,9 @@ As you have associated the Google account <strong>"<? echo $user['google_id'] ?>
 </p></div>
 	<p>Please be aware that you are now leaving this site and that UniNot.es accepts no responsibility for external websites and their content.</p>
 
+</div>
+<div id="gdocs_preview" class="span6">
+<h2>Preview:</h2>
+<iframe class="doc_preview" src="http://docs.google.com/viewer?url=<? echo urlencode($document['Document']['url_pdf']); ?>&embedded=true"></iframe>
+</div>	
 </div>

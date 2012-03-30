@@ -23,3 +23,8 @@ div.image-holder img {
 	float: left;
 	margin-right: 1em;
 }
+
+iframe.doc_preview {
+	width: 100%;
+	height: 400px;
+}
