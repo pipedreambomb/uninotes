@@ -1,6 +1,7 @@
-<div class="hero-unit">
+<div class="row">
+<div class="hero-unit span6 offset4">
 	
-	<h1>External link: <? echo $link['Link']['text']; ?></h1>
+	<h2>External link: <? echo $link['Link']['text']; ?></h2>
 	
 	<? 
 	$countdownScript = "$(function(){
@@ -20,4 +21,5 @@
 	
 	<p>Please be aware that you are now leaving this site and that UniNot.es accepts no responsibility for external websites and their content.</p>
 
+</div>
 </div>
