@@ -7,7 +7,7 @@
 		echo $this->Form->input('Org', array('type' => 'text', 'default' => $organization['Organization']['name'], 'disabled' => true, "label" => "Organization"));
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array("label"=>"Description (optional)", "type" => "textarea"));
-		echo $form->hidden('organization.id', array( 'value' => $organization['Organization']['id']));
+		echo $form->hidden('organization_id', array( 'value' => $organization['Organization']['id']));
 		echo $this->general->formButtons();
 	?>
 	</fieldset>

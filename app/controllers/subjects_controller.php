@@ -31,12 +31,12 @@ class SubjectsController extends AppController {
         }
         if (!empty($this->data)) {
 	    if (isset( $this->params['form']['cancel'])) {
-		 $this->redirect( array('controller' => 'organizations', 'action' => 'view', $this->data['organization']['id']));
+		 $this->redirect( array('controller' => 'organizations', 'action' => 'view', $this->data['Subject']['organization_id']));
 	     }
             $this->Subject->create();
-            if ($this->Subject->save($this->data)) {
+            if ($this->Subject->saveAll($this->data)) {
                 $this->Session->setFlash(__('The subject has been saved', true));
-                $this->redirect(array('controller' => 'organizations', 'action' => 'view', $this->data['Organization']['id']));
+                $this->redirect(array('controller' => 'organizations', 'action' => 'view', $this->data['Subject']['organization_id']));
             } else {
                 $this->Session->setFlash(__('The subject could not be saved. Please, try again.', true));
             }
@@ -46,6 +46,7 @@ class SubjectsController extends AppController {
 		if ($org != null) {
 			$this->set('organization', $org);
 		} else {
+			debug($id);
 		    $this->Session->setFlash(__('Invalid organization', true));
 		    $this->redirect(array('action' => 'index'));
 		}
