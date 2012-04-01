@@ -17,7 +17,7 @@ class DocumentsController extends AppController {
 		$this->set('document', $this->Document->read(null, $id));
 	}
 
-	function add($type, $id) {
+	function add($type = null, $id = null) {
 		if (!empty($this->data)) {
 		    if (isset( $this->params['form']['cancel'])) {
 			 $targetType = $this->data['Document']['targetType'];
