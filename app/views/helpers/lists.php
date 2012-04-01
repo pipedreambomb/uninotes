@@ -52,7 +52,7 @@ class ListsHelper extends Helper {
 					$class = ' class="altrow"';
 				}
 			$out .= "<tr" . $class . ">" 
-				. "<td>" . $this->Html->link($displayText, array('controller' => 'links', 'action' => 'go', $link['id'])) . "</td>"
+				. "<td>" . $this->Html->link($displayText, array('controller' => 'links', 'action' => 'go', $link['id']), array('target' => '_blank')) . "</td>"
 				. "<td class=\"actions\">";
 			$out .= $this->Html->link(__('Edit', true), array('controller' => 'links', 'action' => 'edit', $link['id']));
 				$out .= "
