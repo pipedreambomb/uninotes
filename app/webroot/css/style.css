@@ -32,3 +32,7 @@ iframe.doc_preview {
 .alert {
 	text-align: center;
 }
+
+th {
+	text-align: left;
+}

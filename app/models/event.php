@@ -6,7 +6,7 @@ class Event extends AppModel {
 		//use MySQL directly to create a pseudo field, in this case representing
 		//the date as a string
 		'datestr' => "DATE_FORMAT(Event.datetime, '%m/%d/%Y %H:%i')",
-		'date_nice_str' => "DATE_FORMAT(Event.datetime, '%a %D %b %Y %H:%i')"
+		'date_nice_str' => "DATE_FORMAT(Event.datetime, '%a %D %b %Y, %l:%i %p')"
 	    );
 	var $validate = array(
 		'subject_id' => array(
