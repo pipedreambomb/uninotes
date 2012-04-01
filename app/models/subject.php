@@ -3,7 +3,7 @@ class Subject extends AppModel {
 	var $name = 'Subject';
 	var $displayField = 'name';
 
-        var $actsAs = 'ExtendAssociations'; 
+        var $actsAs = array('Logable', 'ExtendAssociations'); 
 
 	var $validate = array(
 		'name' => array(

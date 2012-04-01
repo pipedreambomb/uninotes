@@ -2,6 +2,7 @@
 class Link extends AppModel {
 	var $name = 'Link';
 	var $displayField = 'url';
+	var $actsAs = array("Logable"); 
 	var $validate = array(
 		'url' => array(
 			'url' => array(

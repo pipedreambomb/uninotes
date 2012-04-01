@@ -2,6 +2,7 @@
 class Event extends AppModel {
 	var $name = 'Event';
 	var $displayField = 'name';
+	var $actsAs = array("Logable"); 
 	var $virtualFields = array(
 		//use MySQL directly to create a pseudo field, in this case representing
 		//the date as a string

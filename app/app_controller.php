@@ -47,7 +47,12 @@ class AppController extends Controller {
                     $this->redirect($this->Auth->redirect());
                 }
             }
-        }
+        } 
+
+	// Copied from http://bakery.cakephp.org/articles/alkemann/2008/10/21/logablebehavior	
+	if (sizeof($this->uses) && $this->{$this->modelClass}->Behaviors->attached('Logable')) {
+	     $this->{$this->modelClass}->setUserData($user);
+	} 
     }
 
     public function beforeRender() {

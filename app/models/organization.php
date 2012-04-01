@@ -2,6 +2,7 @@
 class Organization extends AppModel {
 	var $name = 'Organization';
 	var $displayField = 'name';
+	var $actsAs = array("Logable"); 
 	var $validate = array(
 		'name' => array(
 			'name' => array(
