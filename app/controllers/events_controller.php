@@ -19,8 +19,9 @@ class EventsController extends AppController {
 			$this->Session->setFlash(__('Invalid event', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('event', $this->Event->read(null, $id));
-		$this->set('activity', $this->Event->findLog(array('model_id' => $id)));
+		$event = $this->Event->read(null, $id);
+		$activity = $this->Event->findLinkedLog($id, $event, array('Link', 'Document'));
+		$this->set(compact('activity', 'event'));
 	}
 
 	function add($id = null) {

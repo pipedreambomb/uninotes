@@ -105,7 +105,37 @@ class LogableBehavior extends ModelBehavior
 	function settings(&$Model) {
 		return $this->settings[$Model->alias];
 	}
-	
+
+	// NB: This is not my code, I copied it from 
+	// http://stackoverflow.com/questions/5064532/merge-two-sorted-arrays-and-the-resulting-array-should-also-be-sorted
+	/*
+		*  * sort a multi demensional array on a column
+		*   *
+		*    * @param array $array array with hash array
+		*     * @param mixed $column key that you want to sort on
+		*      * @param enum $order asc or desc
+		*       */
+	function array_qsort2 (&$array, $column=0, $order="ASC") {
+		    $oper = ($order == "ASC")?">":"<";
+		        if(!is_array($array)) return;
+		        usort($array, create_function('$a,$b',"return (\$a['$column'] $oper \$b['$column']);")); 
+			    reset($array);
+	}
+
+	// GN - get not just the log for the model you're viewing, but also its linked models
+	// e.g. Documents, Links
+	function findLinkedLog(&$model, $modelId, $data, $linkedModels = array()) {
+		$activity = $this->findLog($model, array('model_id' => $modelId));
+		foreach($linkedModels as $linkedModel) {
+			foreach($data[$linkedModel] as $associate) {
+				$activity = array_merge($activity, $this->findLog($model, array('model' => $linkedModel, 'model_id' => $associate['id'])));
+			}
+		}
+		// Sort activity list by date
+		$this->array_qsort2($activity['Log'], 'created', 'DESC');
+		return $activity;
+	}
+
 	/**
 	 * Useful for getting logs for a model, takes params to narrow find. 
 	 * This method can actually also be used to find logs for all models or

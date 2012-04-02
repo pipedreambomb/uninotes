@@ -24,8 +24,8 @@ class OrganizationsController extends AppController {
 		if($organization['Link']['url'] == $this->EMPTY_URL) {
 			$organization['Link']['url'] = "";
 		}
-		$this->set(compact('organization'));
-		$this->set('activity', $this->Organization->findLog(array('model_id' => $id)));
+		$activity = $this->Organization->findLinkedLog($id, $organization, array('Subject'));
+		$this->set(compact('organization', 'activity'));
 	}
 
 	function add() {

@@ -21,8 +21,9 @@ class SubjectsController extends AppController {
             $this->Session->setFlash(__('Invalid subject (' . $id . ')' , true));
             $this->redirect(array('action' => 'index'));
         }
-        $this->set('subject', $this->Subject->read(null, $id));
-	$this->set('activity', $this->Subject->findLog(array('model_id' => $id)));
+	$subject = $this->Subject->read(null, $id);
+	$activity = $this->Subject->findLinkedLog($id, $subject, array('Event', 'Link', 'Document'));
+	$this->set(compact('activity', 'subject'));
     }
 
     function add($id = null) {
