@@ -94,6 +94,7 @@ class ListsHelper extends Helper {
 		foreach ($activities as $activity) {
 			?>
 			<p><? echo $activity['Log']['description']; ?></p>
+			<p style="text-align: right"><? echo $activity['Log']['created']; ?></p>
 			<?
 		}
 	}
