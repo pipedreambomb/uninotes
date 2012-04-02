@@ -1,5 +1,5 @@
-<div class="container">
-<div class="hero-unit">
+<div class="row">
+<div class="hero-unit span4 offset5">
 <?php
 
 echo $this->Form->create(array('action' => 'login'));
@@ -9,7 +9,8 @@ echo $this->Form->inputs(array(
     'password',
     'remember' => array('type' => 'checkbox', 'label' => 'Remember me')
 ));
-echo $this->Form->end('Login');
+
+echo $this->Form->submit(__('Login', true), array('name' => 'ok', 'class' => 'btn-primary btn-float', 'div' => false)); 
 ?>
 </div>
 </div>
