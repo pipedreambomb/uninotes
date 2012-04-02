@@ -25,6 +25,7 @@ class OrganizationsController extends AppController {
 			$organization['Link']['url'] = "";
 		}
 		$this->set(compact('organization'));
+		$this->set('activity', $this->Organization->findLog(array('model_id' => $id)));
 	}
 
 	function add() {

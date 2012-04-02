@@ -89,4 +89,12 @@ class ListsHelper extends Helper {
 		return $out;
 	
 	}
+
+	function activity($activities) {
+		foreach ($activities as $activity) {
+			?>
+			<p><? echo $activity['Log']['description']; ?></p>
+			<?
+		}
+	}
 }

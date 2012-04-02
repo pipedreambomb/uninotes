@@ -39,7 +39,7 @@ breadcrumbs go here > <?php echo $this->Html->link($event['Subject']['name'], ar
 	<div id="javascript_warning">Please note that this site requires JavaScript to be enabled in order to work properly.</div>
 	<div class="tabbed_content" id="activity">
 		<h2>Recent Activity</h2>
-		To come: organization activity will go here
+		<? echo $this->lists->activity($activity); ?>
 	</div>
 <div class="related documents tabbed_content" id="notes">
 	<h3><?php __('Notes');?></h3>

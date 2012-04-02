@@ -20,6 +20,7 @@ class EventsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('event', $this->Event->read(null, $id));
+		$this->set('activity', $this->Event->findLog(array('model_id' => $id)));
 	}
 
 	function add($id = null) {

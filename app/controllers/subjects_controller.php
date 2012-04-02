@@ -22,6 +22,7 @@ class SubjectsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         $this->set('subject', $this->Subject->read(null, $id));
+	$this->set('activity', $this->Subject->findLog(array('model_id' => $id)));
     }
 
     function add($id = null) {

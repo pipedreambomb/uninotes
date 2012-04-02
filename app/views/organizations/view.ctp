@@ -29,7 +29,7 @@
 	<div id="javascript_warning">Please note that this site requires JavaScript to be enabled in order to work properly.</div>
 	<div class="tabbed_content" id="activity">
 		<h2>Recent Activity</h2>
-		To come: organization activity will go here
+		<? echo $this->lists->activity($activity); ?>
 	</div>
 	<div class="related tabbed_content" id="subjects">
 		<h3><?php __('Subjects');?>
