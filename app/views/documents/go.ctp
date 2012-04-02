@@ -5,9 +5,7 @@
 	<h1>External document: <? echo $document['Document']['text']; ?></h1>
 	<br />	
 	<p>Continue to Google Docs to view <? if($user['google_id'] != null) echo "and edit "; ?><strong>"<? echo $document['Document']['text']; ?>"</strong>
-	<? if($user['google_id'] != null) {
-		echo $this->Html->link("Edit Title", array('action' => 'edit', $document['Document']['id']), array('class' => 'btn btn-primary')); 
-	}?>
+	<? echo $this->Html->link("Edit Title", array('action' => 'edit', $document['Document']['id']), array('class' => 'btn btn-primary')); ?>
 	</p>
 <div>
 <? 	if($user['google_id'] == null) :
