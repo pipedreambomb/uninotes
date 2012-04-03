@@ -106,21 +106,6 @@ class LogableBehavior extends ModelBehavior
 		return $this->settings[$Model->alias];
 	}
 
-	// NB: This is not my code, I copied it from 
-	// http://stackoverflow.com/questions/5064532/merge-two-sorted-arrays-and-the-resulting-array-should-also-be-sorted
-	/*
-		*  * sort a multi demensional array on a column
-		*   *
-		*    * @param array $array array with hash array
-		*     * @param mixed $column key that you want to sort on
-		*      * @param enum $order asc or desc
-		*       */
-	function _array_qsort2 (&$array, $column=0, $order="ASC") {
-		    $oper = ($order == "ASC")?">":"<";
-		        if(!is_array($array)) return;
-		        usort($array, create_function('$a,$b',"return (\$a['$column'] $oper \$b['$column']);")); 
-			    reset($array);
-	}
 
 	// GN - get not just the log for the model you're viewing, but also its linked models
 	// e.g. Documents, Links
@@ -129,7 +114,7 @@ class LogableBehavior extends ModelBehavior
 		$activities = $this->_addActivityForLinkedModels($Model, $activities, $data, $linkedModelNames);
 		$activities = $this->_addUserInfoToActivities($Model, $activities);
 		// Sort activity list by date
-		$this->_array_qsort2($activities['Log'], 'created', 'DESC');
+		$activities = $this->_sortByRecentDesc($activities);
 		return $activities;
 	}
 	 
@@ -154,6 +139,17 @@ class LogableBehavior extends ModelBehavior
 		return $res;
 	}
 
+	function _sortByRecentDesc($activities) {
+
+		$res = array();
+		foreach($activities as $activity) {
+			$res[$activity['Log']['created']] = $activity;
+		}
+		// Sort the array by keys (reverse order, i.e descending)
+		krsort($res);
+		return $res;
+
+	}
 
 	/**
 	 * Useful for getting logs for a model, takes params to narrow find. 

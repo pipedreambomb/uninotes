@@ -109,7 +109,7 @@ class ListsHelper extends Helper {
 					break;
 				case 'edit':
 					$verb = "edited";
-					$label = "success";
+					$label = "info";
 					break;
 				}
 				echo " <span class='label label-" . $label . "'>" . $verb . "</span> ";
