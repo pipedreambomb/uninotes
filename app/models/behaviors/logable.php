@@ -115,7 +115,7 @@ class LogableBehavior extends ModelBehavior
 		*     * @param mixed $column key that you want to sort on
 		*      * @param enum $order asc or desc
 		*       */
-	function array_qsort2 (&$array, $column=0, $order="ASC") {
+	function _array_qsort2 (&$array, $column=0, $order="ASC") {
 		    $oper = ($order == "ASC")?">":"<";
 		        if(!is_array($array)) return;
 		        usort($array, create_function('$a,$b',"return (\$a['$column'] $oper \$b['$column']);")); 
@@ -124,17 +124,36 @@ class LogableBehavior extends ModelBehavior
 
 	// GN - get not just the log for the model you're viewing, but also its linked models
 	// e.g. Documents, Links
-	function findLinkedLog(&$model, $modelId, $data, $linkedModels = array()) {
-		$activity = $this->findLog($model, array('model_id' => $modelId));
-		foreach($linkedModels as $linkedModel) {
-			foreach($data[$linkedModel] as $associate) {
-				$activity = array_merge($activity, $this->findLog($model, array('model' => $linkedModel, 'model_id' => $associate['id'])));
+	function findLinkedLog(&$Model, $modelId, $data, $linkedModelNames = array()) {
+		$activities = $this->findLog($Model, array('model_id' => $modelId));
+		$activities = $this->_addActivityForLinkedModels($Model, $activities, $data, $linkedModelNames);
+		$activities = $this->_addUserInfoToActivities($Model, $activities);
+		// Sort activity list by date
+		$this->_array_qsort2($activities['Log'], 'created', 'DESC');
+		return $activities;
+	}
+	 
+	// GN
+	function _addActivityForLinkedModels(&$Model, $activities, $data, $linkedModelNames = array()) {
+
+		foreach($linkedModelNames as $linkedModelName) {
+			foreach($data[$linkedModelName] as $linkedModel) {
+					$activities = array_merge($activities, $this->findLog($Model, array('model' => $linkedModelName, 'model_id' => $linkedModel['id'])));
 			}
 		}
-		// Sort activity list by date
-		$this->array_qsort2($activity['Log'], 'created', 'DESC');
-		return $activity;
+		return $activities;
 	}
+
+	// GN get details of user who performed the change
+	function _addUserInfoToActivities(&$Model, $activities) {
+
+		$res = array();
+		foreach($activities as $activity) {
+			array_push($res, array_merge($activity, $Model->User->findById($activity['Log']['user_id'])));
+		}
+		return $res;
+	}
+
 
 	/**
 	 * Useful for getting logs for a model, takes params to narrow find. 

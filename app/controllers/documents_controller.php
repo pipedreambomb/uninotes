@@ -10,11 +10,7 @@ class DocumentsController extends AppController {
         }
 
 	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid document', true));
-			$this->go404();
-		}
-		$this->set('document', $this->Document->read(null, $id));
+		$this->redirect(array('action'=>'go', $id));
 	}
 
 	function add($type = null, $id = null) {

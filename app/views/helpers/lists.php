@@ -93,8 +93,33 @@ class ListsHelper extends Helper {
 	function activity($activities) {
 		foreach ($activities as $activity) {
 			?>
-			<p><? echo $activity['Log']['description']; ?></p>
-			<p style="text-align: right"><? echo $activity['Log']['created']; ?></p>
+			<p>
+				<? echo $this->Html->link($activity['User']['username'], array('controller' => 'users', 'action' => 'view', $activity['User']['id'])); ?>
+				<? 
+				$verb = "";
+				$label = "";
+				switch ($activity['Log']['action']) {
+				case 'add':
+					$verb = "added";
+					$label = "success";
+					break;
+				case 'delete':
+					$verb = "deleted";
+					$label = "important";
+					break;
+				case 'edit':
+					$verb = "edited";
+					$label = "success";
+					break;
+				}
+				echo " <span class='label label-" . $label . "'>" . $verb . "</span> ";
+				// lower case model name
+				echo strtolower($activity['Log']['model']) . " ";
+				$controller = Inflector::pluralize($activity['Log']['model']);
+				echo $this->Html->link($activity['Log']['title'], array('controller' => $controller, 'action' => 'view', $activity['Log']['model_id']));
+				?>
+				<? echo " on " . $activity['Log']['created_nice_str']; ?>
+			</p>
 			<?
 		}
 	}
