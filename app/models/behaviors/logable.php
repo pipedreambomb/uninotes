@@ -274,7 +274,7 @@ class LogableBehavior extends ModelBehavior
 		// GN - add the user data I need to print the username later, such that the 
 		// same data is available from this function as my custom findLinkedLogs() function
 		foreach(array_keys($data) as $key) {
-			$data[$key]['User'] = $this->user['User'];
+			$data[$key]['User'] = array('username' => $username, 'id' => $user_id);
 		}
 		if (! isset($params['events']) || (isset($params['events']) && $params['events'] == false)) {
 			return $data;

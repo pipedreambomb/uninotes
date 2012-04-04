@@ -109,7 +109,10 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->goHome();
 		}
-		$this->set('userProfile', $this->User->read(null, $id));
+		$userProfile = $this->User->read(null, $id);
+		$activity = $this->User->findUserActions($id);
+		$isSelf = $id == $this->Auth->user('id');
+		$this->set(compact('userProfile', 'activity', 'isSelf'));
 	}
 
 	function dashboard(){

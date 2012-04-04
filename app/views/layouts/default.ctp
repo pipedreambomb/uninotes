@@ -71,7 +71,7 @@
 	<p id="login" class="navbar-text pull-right">
                 <?php if (!empty($user)) { ?>
                     Welcome back <?php 
-                    echo $this->Html->link($user['username'], array('controller' => 'users', 'action' => 'dashboard'));
+                    echo $this->Html->link($user['username'], array('controller' => 'users', 'action' => 'view', $user['id']));
 		  ?>!&nbsp;<?
                     echo $this->Html->link('Log out', array('controller' => 'users', 'action' => 'logout'));
                 } else {
