@@ -59,6 +59,9 @@
                             <? echo $this->Html->link('UniNot.es', array('controller' => '', 'action' => 'index'), array('class' => 'brand'));?>
 			</li>
                         <li>
+                            <? echo $this->Html->link('Dashboard', array('controller' => 'users', 'action' => 'dashboard'));?>
+			</li>
+                        <li>
                             <? echo $this->Html->link('Organizations', array('controller' => 'organizations', 'action' => 'index'));?>
 			</li>
                         <li>

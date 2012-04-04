@@ -119,27 +119,35 @@ class LogableBehavior extends ModelBehavior
 	}
 	 
 	// GN
-	function _addActivityForLinkedModels(&$Model, $activities, $data, $linkedModelNames = array()) {
+	private function _addActivityForLinkedModels(&$Model, $activities, $data, $linkedModelNames = array()) {
 
 		foreach($linkedModelNames as $linkedModelName) {
 			foreach($data[$linkedModelName] as $linkedModel) {
-					$activities = array_merge($activities, $this->findLog($Model, array('model' => $linkedModelName, 'model_id' => $linkedModel['id'])));
+				$activities = array_merge($activities, $this->findLog($Model, array('model' => $linkedModelName, 'model_id' => $linkedModel['id'])));
 			}
 		}
 		return $activities;
 	}
 
 	// GN get details of user who performed the change
-	function _addUserInfoToActivities(&$Model, $activities) {
+	private function _addUserInfoToActivities(&$Model, $activities) {
 
 		$res = array();
 		foreach($activities as $activity) {
-			array_push($res, array_merge($activity, $Model->User->findById($activity['Log']['user_id'])));
+			// Two different ways needed to get user info depending on original
+			// model from the Controller, as there is no such thing as User->User
+			// but usually is of form Event->User
+			if(get_class($Model) != 'User') {
+				$user = $Model->User->findById($activity['Log']['user_id']);
+			} else {
+				$user = $Model->findById($activity['Log']['user_id']);
+			}
+			array_push($res, array_merge($activity, $user));
 		}
 		return $res;
 	}
 
-	function _sortByRecentDesc($activities) {
+ 	private	function _sortByRecentDesc($activities) {
 
 		$res = array();
 		foreach($activities as $activity) {
@@ -149,6 +157,16 @@ class LogableBehavior extends ModelBehavior
 		krsort($res);
 		return $res;
 
+	}
+
+	// GN Gets activity to display on a user's dashboard, i.e. logs of both actions
+	// they have performed and that have happened on entities they are following
+	function findDashboardActivity(&$Model, $id, $user) {
+		$userActivity = $this->findUserActions($Model, $id);
+		$followingActivity = $this->findLinkedLog($Model, $id, $user, array('Organization', 'Subject', 'Event'));
+		$combinedActivity = array_merge($userActivity, $followingActivity);
+		$combinedActivity = $this->_sortByRecentDesc($combinedActivity);
+		return array('activity' => array('own' => $userActivity, 'following' => $followingActivity, 'both' => $combinedActivity));
 	}
 
 	/**
@@ -253,6 +271,11 @@ class LogableBehavior extends ModelBehavior
 			'recursive' => -1,
 			'fields' => $fields
 		));
+		// GN - add the user data I need to print the username later, such that the 
+		// same data is available from this function as my custom findLinkedLogs() function
+		foreach(array_keys($data) as $key) {
+			$data[$key]['User'] = $this->user['User'];
+		}
 		if (! isset($params['events']) || (isset($params['events']) && $params['events'] == false)) {
 			return $data;
 		}

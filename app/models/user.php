@@ -4,7 +4,7 @@ class User extends AppModel {
 
 	var $name = 'User';
 	var $displayField = 'username';
-	var $actsAs = 'ExtendAssociations';
+	var $actsAs = array('Logable', 'ExtendAssociations');
 	var $validate = array(
 		'username' => array(
 			'maxlength' => array(

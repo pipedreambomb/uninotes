@@ -36,3 +36,7 @@ iframe.doc_preview {
 th {
 	text-align: left;
 }
+
+.gap_above {
+	margin-top: 2em;
+}

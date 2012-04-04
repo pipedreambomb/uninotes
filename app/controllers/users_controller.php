@@ -6,7 +6,7 @@ class UsersController extends AppController {
 	var $components = array('Recaptcha.Captcha' => array(
 		'private_key' => '6LeewcsSAAAAAI2idDck79tLkRomGdTcyyiEaSUQ',
 		'public_key' => '6LeewcsSAAAAALlyb2fjylNG-7Yl-_16aXXL3OPC'));
-	var $helpers = array('Glink', 'Recaptcha.CaptchaTool');
+	var $helpers = array('lists', 'Glink', 'Recaptcha.CaptchaTool');
 
 	public function beforeFilter() {
 
@@ -92,6 +92,7 @@ class UsersController extends AppController {
 	function refreshUserSessionInfo(){
 		$user = $this->User->read(null, $this->Auth->user('id'));
 		$this->Session->write($this->Auth->sessionKey, $user['User']);
+		return $user;
 	}
 
 	function logout() {
@@ -112,8 +113,9 @@ class UsersController extends AppController {
 	}
 
 	function dashboard(){
-		//cheating for test purposes, comment this out later
-		$this->refreshUserSessionInfo();
+		$userProfile = $this->refreshUserSessionInfo();
+		$activity = $this->User->findDashboardActivity($userProfile['User']['id'], $userProfile);
+		$this->set(compact('userProfile', 'activity'));
 	}
 
 	// Connect user's account to their Google account
