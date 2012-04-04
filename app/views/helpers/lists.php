@@ -116,7 +116,8 @@ class ListsHelper extends Helper {
 				// lower case model name
 				echo strtolower($activity['Log']['model']) . " ";
 				$controller = Inflector::pluralize($activity['Log']['model']);
-				echo $this->Html->link($activity['Log']['title'], array('controller' => $controller, 'action' => 'view', $activity['Log']['model_id']));
+				$name = $activity['Log']['title'] == null ? "(untitled)" : $activity['Log']['title'];
+				echo $this->Html->link($name, array('controller' => $controller, 'action' => 'view', $activity['Log']['model_id']));
 				?>
 				<? echo " on " . $activity['Log']['created_nice_str']; ?>
 			</p>
