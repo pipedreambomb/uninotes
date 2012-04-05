@@ -52,10 +52,12 @@ breadcrumbs go here > <?php echo $this->Html->link($event['Subject']['name'], ar
 </div>
 <div class="span4">
 <div class="related">
-	<h3><?php __('Users following this event');?></h3>
+	<h3><?php 
+		echo 'users following event '; 
+		echo $this->general->followunfollowbutton($event['Event']['id'], $isFollowing); ?>
+</h3>
 	<? echo $this->lists->users($event['User']); ?>
 	<div class=\"actions\">
-		<? echo $this->Html->link(__('Follow This Event', true),	array('action' => 'follow', $event['Event']['id']), array('class' => 'btn')); ?>
 	</div>
 </div>
 </div>

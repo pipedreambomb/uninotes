@@ -25,7 +25,8 @@ class OrganizationsController extends AppController {
 			$organization['Link']['url'] = "";
 		}
 		$activity = $this->Organization->findLinkedLog($id, $organization, array('Subject'));
-		$this->set(compact('organization', 'activity'));
+		$isFollowing = $this->Organization->User->isFollowing('Organization', $this->Auth->user('id'), $id);
+		$this->set(compact('isFollowing', 'organization', 'activity'));
 	}
 
 	function add() {
@@ -105,4 +106,18 @@ class OrganizationsController extends AppController {
         $this->redirect(array('action' => 'index'));
     }
 
+    function unfollow($id = null) {
+
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid id for organization', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        $userId = $this->Auth->user('id');
+        if ($this->Organization->User->unfollow('Organization', $userId, $id)) {
+            $this->Session->setFlash(__('Organization unfollowed', true));
+            $this->redirect(array('action' => 'view', $id));
+        }
+        $this->Session->setFlash(__('Organization was not unfollowed', true));
+        $this->redirect(array('action' => 'index'));
+    }
 }

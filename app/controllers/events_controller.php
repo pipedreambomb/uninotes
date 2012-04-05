@@ -21,7 +21,8 @@ class EventsController extends AppController {
 		}
 		$event = $this->Event->read(null, $id);
 		$activity = $this->Event->findLinkedLog($id, $event, array('Link', 'Document'));
-		$this->set(compact('activity', 'event'));
+		$isFollowing = $this->Event->User->isFollowing('Event', $this->Auth->user('id'), $id);
+		$this->set(compact('isFollowing', 'activity', 'event'));
 	}
 
 	function add($id = null) {
@@ -105,6 +106,21 @@ class EventsController extends AppController {
             $this->redirect(array('action' => 'view', $id));
         }
         $this->Session->setFlash(__('Event was not followed', true));
+        $this->redirect(array('action' => 'index'));
+    }
+
+    function unfollow($id = null) {
+
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid id for event', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        $userId = $this->Auth->user('id');
+        if ($this->Event->User->unfollow('Event', $userId, $id)) {
+            $this->Session->setFlash(__('Event unfollowed', true));
+            $this->redirect(array('action' => 'view', $id));
+        }
+        $this->Session->setFlash(__('Event was not unfollowed', true));
         $this->redirect(array('action' => 'index'));
     }
 }

@@ -68,12 +68,13 @@
 		} ?>
 		</p></em>
 	</div>
-	<div class="related">
-		<h3><?php __('Users following this organization');?></h3>
-		<? echo $this->lists->users($organization['User']); ?>
-		<div class=\"actions\">
-				<? echo $this->Html->link(__('Follow This Organization', true), 
-				array('action' => 'follow', $organization['Organization']['id']), array('class' => 'btn')); ?>
-		</div>
+<div class="related">
+	<h3><?php 
+		echo 'Users following organization '; 
+		echo $this->general->followUnfollowButton($organization['Organization']['id'], $isFollowing); ?>
+</h3>
+	<? echo $this->lists->users($organization['User']); ?>
+	<div class=\"actions\">
 	</div>
+</div>
 </div>
