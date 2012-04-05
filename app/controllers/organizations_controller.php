@@ -7,13 +7,8 @@ class OrganizationsController extends AppController {
 
         public function beforeFilter() {
             parent::beforeFilter();
-            $this->Auth->allow('index', 'view');
+            $this->Auth->allow('view');
         }
-
-	function index() {
-		$this->Organization->recursive = 0;
-		$this->set('organizations', $this->paginate());
-	}
 
 	function view($id = null) {
 		if (!$id) {

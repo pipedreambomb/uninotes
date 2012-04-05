@@ -61,12 +61,6 @@
                         <li>
                             <? echo $this->Html->link('Dashboard', array('controller' => 'users', 'action' => 'dashboard'));?>
 			</li>
-                        <li>
-                            <? echo $this->Html->link('Organizations', array('controller' => 'organizations', 'action' => 'index'));?>
-			</li>
-                        <li>
-                            <? echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index'));?>
-                        </li>
 			<?php 
 			echo $this->Form->create(false, array('type' => 'get', 'url' => "http://www.google.com/search", 'target' => '_empty', 'class' => "navbar-search pull-left")); ?>
 			    <input name="q" type="text" class="search-query" placeholder="Search">
