@@ -51,6 +51,18 @@ breadcrumbs go here > <?php echo $this->Html->link($event['Subject']['name'], ar
 </div>
 </div>
 <div class="span4">
+	<div>
+		<h3>Address</h3>
+		<p><em>
+			<? 
+			$address = $event['Event']['address'];
+			if ($address != null) {
+			echo $this->map->locationMap($address);
+		} else {
+			echo "We don't have an address for this event yet - why not help out and " . $this->Html->link('add one', array("action" => "edit", $event['Event']['id'])) . "?";
+		} ?>
+		</p></em>
+	</div>
 <div class="related">
 	<h3><?php 
 		echo 'users following event '; 
