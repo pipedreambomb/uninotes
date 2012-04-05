@@ -53,8 +53,9 @@ class SubjectsController extends AppController {
 		    $this->Session->setFlash(__('Invalid organization', true));
 		    $this->redirect(array('action' => 'index'));
 		}
+	} elseif(isset($this->data['Subject']['organization_id'])) {
+		$this->set('organization', $this->Subject->Organization->findById($this->data['Subject']['organization_id']));
 	}
-		
     }
 
     function edit($id = null) {
