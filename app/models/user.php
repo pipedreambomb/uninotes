@@ -9,7 +9,7 @@ class User extends AppModel {
 		'username' => array(
 			'maxlength' => array(
 				'rule' => array('maxlength', 30),
-				//'message' => 'Your custom message here',
+				'message' => 'Username cannot be longer than 30 characters',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -17,13 +17,23 @@ class User extends AppModel {
 			),
 			'minlength' => array(
 				'rule' => array('minlength', 4),
-				//'message' => 'Your custom message here',
+				'message' => 'Username cannot be less than 4 characters',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'password' => array(
+			'minlength' => array(
+				'rule' => array('minlength', 4),
+				'message' => 'Password cannot be less than 4 characters',
+				'allowEmpty' => false,
+				'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		)
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
