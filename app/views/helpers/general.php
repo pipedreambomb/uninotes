@@ -17,4 +17,13 @@ class GeneralHelper extends AppHelper {
      </div>
 <? 	}
 
+	function followUnfollowButton($id, $unfollow = false) {
+		$res = "";	
+		if($unfollow) {
+			$res = $this->Html->link(__('Unfollow', true),	array('action' => 'unfollow', $id), array('class' => 'btn btn-danger')); 
+		} else {
+			$res = $this->Html->link(__('Follow', true),	array('action' => 'follow', $id), array('class' => 'btn btn-success')); 
+		}
+		return $res;
+	}
 }

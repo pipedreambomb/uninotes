@@ -84,6 +84,24 @@ class User extends AppModel {
 		return $this->habtmAdd($modelName, $userId, $targetId);
 	}
 
+	public function unfollow($modelName, $userId, $targetId) {
+		return $this->habtmDelete($modelName, $userId, $targetId);
+	}
+
+	// Is this user following this entity already?
+	public function isFollowing($modelName, $userId, $targetId) {
+		$res = false;
+		$user = $this->findById($userId);
+		if(!empty($user)) {
+			foreach ($user[$modelName] as $target) {
+				if($target['id'] == $targetId) {
+					$res = true;
+				}
+			}
+		}
+		return $res;
+	}
+
 	public function addGoogleId($userId, $googleId) {
 		$existingMatches = $this->_countMatchingGIds($googleId); 
 		$this->_saveGoogleIdToUser($userId, $googleId);

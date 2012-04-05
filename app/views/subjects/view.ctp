@@ -82,10 +82,12 @@
 </div>
 <div class="main span4">
 <div class="related">
-	<h3><?php __('Users following this subject');?></h3>
+	<h3><?php 
+		echo 'Users following subject '; 
+		echo $this->general->followUnfollowButton($subject['Subject']['id'], $isFollowing); ?>
+</h3>
 	<? echo $this->lists->users($subject['User']); ?>
 	<div class=\"actions\">
-		<? echo $this->Html->link(__('Follow This Subject', true),	array('action' => 'follow', $subject['Subject']['id']), array('class' => 'btn')); ?>
 	</div>
 </div>
 </div>

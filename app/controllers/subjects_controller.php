@@ -23,7 +23,8 @@ class SubjectsController extends AppController {
         }
 	$subject = $this->Subject->read(null, $id);
 	$activity = $this->Subject->findLinkedLog($id, $subject, array('Event', 'Link', 'Document'));
-	$this->set(compact('activity', 'subject'));
+	$isFollowing = $this->Subject->User->isFollowing('Subject', $this->Auth->user('id'), $id);
+	$this->set(compact('activity', 'subject', 'isFollowing'));
     }
 
     function add($id = null) {
@@ -109,4 +110,18 @@ class SubjectsController extends AppController {
         $this->redirect(array('action' => 'index'));
     }
 
+    function unfollow($id = null) {
+
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid id for subject', true));
+            $this->redirect(array('action' => 'index'));
+        }
+        $userId = $this->Auth->user('id');
+        if ($this->Subject->User->unfollow('Subject', $userId, $id)) {
+            $this->Session->setFlash(__('Subject unfollowed', true));
+            $this->redirect(array('action' => 'view', $id));
+        }
+        $this->Session->setFlash(__('Subject was not unfollowed', true));
+        $this->redirect(array('action' => 'index'));
+    }
 }
