@@ -14,11 +14,11 @@
 	<fieldset>
 		<legend><?php __('Add Event'); ?></legend>
 	<?php
+		echo $this->Form->input('newDateTime', array('id' => 'picker', 'label' => 'Date & Time (US calendar format)'));
 		echo $this->Form->input('id');
 		echo $this->Form->input('name', array('label' => 'Name (optional)'));
 		echo $this->Form->input('Subj', array('type' => 'text', 'default' => $subject['Subject']['name'], 'disabled' => true, "label" => "Subject"));
 		echo $form->hidden('subject_id', array( 'value' => $subject['Subject']['id']));
-		echo $this->Form->input('newDateTime', array('id' => 'picker', 'label' => 'Date & Time (US calendar format)'));
 		$options = array('' => null, '30 mins' => '30 mins', '1 hour' => '1 hour', '1 hour 30 mins' => '1 hour 30 mins', '2 hours'=>'2 hours', '2 hours 30 mins'=>'2 hours 30 mins', '3 hours'=>'3 hours', '4 hours'=>'4 hours', '6 hours'=>'6 hours', '1 day'=>'1 day');
 		echo $this->Form->input('duration', array('type'=>'select', 'options'=>$options));
 		echo $this->Form->input('address', array("label" => "Address (optional)", "rows" => 3, "type" => "textarea"));

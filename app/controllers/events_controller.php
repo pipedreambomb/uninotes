@@ -50,6 +50,8 @@ class EventsController extends AppController {
 			    $this->Session->setFlash(__('Invalid subject', true));
 			    $this->redirect(array('action' => 'index'));
 			}
+		} elseif(isset($this->data['Event']['subject_id'])) {
+			$this->set('subject', $this->Event->Subject->findById($this->data['Event']['subject_id']));
 		}
 	}
 
