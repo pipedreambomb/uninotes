@@ -40,3 +40,7 @@ th {
 .gap_above {
 	margin-top: 2em;
 }
+
+p.small_font {
+	font-size: small;
+}

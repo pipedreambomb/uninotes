@@ -24,6 +24,10 @@ class UsersController extends AppController {
 
 		if (!empty($this->data)) {
 
+			    if (isset( $this->params['form']['cancel'])) {
+				    $this->Session->setFlash('Signup cancelled');
+				    $this->goHome();
+			     }
 			if (!$this->Captcha->validate()) {
 				$this->Session->setFlash('CAPTCHA failed, please try again.');
 			} else {
