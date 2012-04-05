@@ -22,7 +22,7 @@ class LinksController extends AppController {
 		$this->set('link', $this->Link->read(null, $id));
 	}
 
-	function add($type, $id) {
+	function add($type = null, $id = null) {
 		if (!empty($this->data)) {
 			$this->Link->create();
 			if ($this->Link->save($this->data)) {
@@ -32,11 +32,11 @@ class LinksController extends AppController {
 				$this->Session->setFlash(__('The link could not be saved. Please, try again.', true));
 			}
 		}
-		if (isset($type) && isset($id)) {
-			$this->set('target', $this->Link->getLinkTarget($type, $id));
-		} else {
-			//error
+		if (!isset($type) || !isset($id)) {
+			$type = $this->data['Link']['type'];
+			$id = $this->data[$type]['id'];
 		}
+		$this->set('target', $this->Link->getLinkTarget($type, $id));
 	}
 
 	function edit($id = null) {

@@ -4,10 +4,11 @@
 	<fieldset>
 		<legend><?php __('Add Link'); ?></legend>
 	<?php
-		echo $this->Form->input($target['type'], array('type' => 'text', 'default' => $target['name'], 'disabled' => true));
+		echo $this->Form->input($target['type'], array('type' => 'text', 'value' => $target['name'], 'disabled' => true));
 		echo $this->Form->input('url', array('label' => 'Website address'));
 		echo $this->Form->input('text', array('label' => 'Title (optional)'));
 		echo $form->hidden($target['type']. '.id', array( 'value' => $target['id']));
+		echo $form->hidden('type', array('value' => $target['type']));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
