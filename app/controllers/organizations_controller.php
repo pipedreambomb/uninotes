@@ -52,7 +52,11 @@ class OrganizationsController extends AppController {
 			 // This is a hack, sets it to this special url which we will
 			 // screen for before passing to views, and pass an empty string instead
 			 if($this->data['Link']['url'] == "") {
-				$this->data['Link']['url'] = $this->EMPTY_URL;
+				 $this->Organization->set( $this->data );
+				 //only do so if form passes validation, i.e. we are about to save data
+				if($this->Organization->validates()) {
+					$this->data['Link']['url'] = $this->EMPTY_URL;
+				}
 			 }
 			if ($this->Organization->saveAll($this->data)) {
 				$this->Session->setFlash(__('The organization has been saved', true));

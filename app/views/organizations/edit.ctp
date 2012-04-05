@@ -8,7 +8,7 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array("rows" => 3, "label"=>"Description (optional)", "type" => "textarea"));
 		echo $this->Form->input('address', array("label" => "Address (optional)", "rows" => 3, "type" => "textarea"));
-		echo $this->Form->input('Link.url', array("label" => "Website (optional)"));
+		echo $this->Form->input('Link.url', array("label" => "Website (optional)", "format" => array('before', 'label', 'between', 'input', 'after')));
 		echo $this->Form->hidden('Link.id');
 		echo $this->general->formButtons();
 	?>
