@@ -47,7 +47,18 @@
 <? echo $this->lists->activity($activity); ?>
 </div>
 <div class="span5">
-<h2>Latest Organizations</h2>
+<h2>Latest Organizations
+<?php echo $this->Html->link(__('Add', true), array('controller' => 'organizations', 'action' => 'add'), array("class"=>"btn btn-primary")); ?>
+</h2>
+<ul>
+<?php
+foreach ($organizations as $organization):
+?>
+<li>
+<?php echo $this->Html->link(__($organization['Organization']['name'], true), array('controller' => 'organizations', 'action' => 'view', $organization['Organization']['id'])); ?>
+</li>
+<?php endforeach; ?>
+</ul>
 </div>
 </div>
 </div>

@@ -79,11 +79,12 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		//GN load log for all activities
 		if($page == 'home') {
+			//GN load log for all activities
 			$this->loadModel('Organization');
 			$activity = $this->Organization->findFullLog();
-			$this->set(compact('activity'));
+			$organizations = $this->Organization->find('all', array('order' => 'Organization.id DESC'));
+			$this->set(compact('organizations', 'activity'));
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
