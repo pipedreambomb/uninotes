@@ -106,6 +106,25 @@ class LogableBehavior extends ModelBehavior
 		return $this->settings[$Model->alias];
 	}
 
+	// GN - get the log of all latest activities including user info
+	function findFullLog(&$Model) {
+		$activities = $this->findLog($Model, array('model' => FALSE));
+		$activities = $this->_pruneUserSignups($activities);
+		$activities = $this->_addUserInfoToActivities($Model, $activities);
+		return $activities;
+	}
+
+	// Activities relating to users signing up appears weird in results,
+	// so take these out of the list
+	private function _pruneUserSignups($activities) {
+		$res = array();
+		foreach($activities as $activity) {
+			if ($activity['Log']['model'] != 'User') {
+				array_push($res, $activity);
+			}
+		}
+		return $res;
+	}
 
 	// GN - get not just the log for the model you're viewing, but also its linked models
 	// e.g. Documents, Links

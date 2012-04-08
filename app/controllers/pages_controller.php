@@ -45,7 +45,7 @@ class PagesController extends AppController {
  * @var array
  * @access public
  */
-	var $helpers = array('Html', 'Session');
+	var $helpers = array('Html', 'Session', 'lists');
 
 /**
  * This controller does not use a model
@@ -78,6 +78,12 @@ class PagesController extends AppController {
 		}
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
+		}
+		//GN load log for all activities
+		if($page == 'home') {
+			$this->loadModel('Organization');
+			$activity = $this->Organization->findFullLog();
+			$this->set(compact('activity'));
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
