@@ -1,46 +1,46 @@
 <div class="container">
 <div class="row"> 
 <div class="hero-unit"> 
-
+<?
+   $this->Js->buffer(" $('.carousel').carousel({
+	        interval: 5000
+			    }).carousel('cycle');");
+?>
 	<h2>Welcome to UniNot.es!</h2>
-	<div class="row-fluid">
-		<div class="span4">
-			<div class="row-fluid">
-				<!-- offset with a gap size 3 units -->
-				<div class="span3">&nbsp;</div>
-				<div class="span6 image-holder ">
-					<? echo $this->Html->image("people.png");  ?>
-				</div>
-				<div class="span12">
-			<p>The goal of UniNot.es is to aid collaboration between students, conference attendees and academics, using live event-based note sessions saved for future revision.</p>
-				</div>
-			</div>
+<div class="row-fluid">
+    <div id="myCarousel" class="carousel slide span10">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+	    <div class="active item">
+		<? echo $this->Html->image("carousel-1.jpeg");  ?>
+		<div class="carousel-caption">
+			<h4>First Thumbnail label</h4>
+			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 		</div>
-		<div class="span4">
-			<div class="row-fluid">
-				<!-- offset with a gap size 3 units -->
-				<div class="span3">&nbsp;</div>
-				<div class="span6 image-holder ">
-					<? echo $this->Html->image("calendar.png");  ?>
-				</div>
-				<div class="span12">
-			<p>Hopefully by May you will be able to find such sessions by organization, location or via people you know also using the site, and learn and share together.</p>  
-				</div>
-			</div>
+	    </div>
+	    <div class="item">
+		<? echo $this->Html->image("carousel-2.jpeg");  ?>
+		<div class="carousel-caption">
+			<h4>First Thumbnail label</h4>
+			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 		</div>
-		<div class="span4">
-			<div class="row-fluid">
-				<!-- offset with a gap size 3 units -->
-				<div class="span3">&nbsp;</div>
-				<div class="span6 image-holder ">
-					<? echo $this->Html->image("caution.png");  ?>
-				</div>
-				<div class="span12">
-					<p>This site is currently work-in-progress - and you can help by clicking around and <a href="mailto:g@georgenixon.co.uk">telling me</a> if something goes wrong! </p>
-				</div>
-			</div>
+	    </div>
+	    <div class="item">
+		<? echo $this->Html->image("carousel-3.jpeg");  ?>
+		<div class="carousel-caption">
+			<h4>First Thumbnail label</h4>
+			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 		</div>
-	</div>
+	    </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+<div class="span2">
+<? echo $this->Html->link('Learn More', array('action' => 'display', 'about'), array('class' => 'btn btn-success')); ?>
+</div>
+</div>
 </div>
 <div class="span7">
 <h2>Recent Activity</h2>

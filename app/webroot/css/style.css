@@ -44,3 +44,8 @@ th {
 p.small_font {
 	font-size: small;
 }
+
+.carousel-caption h4,
+.carousel-caption p {
+  color: #ffffff;
+}
