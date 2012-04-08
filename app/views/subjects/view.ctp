@@ -5,7 +5,8 @@
 <div class="row">
 <div class="span8 offset2">
 <div class="subjects view">
-	<? echo $this->Html->link('Home', array('controller'=>'pages', 'action'=> 'display', 'home')); ?> &gt;
+	<? echo $this->Html->link('Home', array('controller'=>'pages', 'action'=> 'display', 'home')); ?>
+&nbsp;&gt;&nbsp;
 			<?php echo $this->Html->link($subject['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $subject['Organization']['id'])); ?>
 	&gt; <?php echo $subject['Subject']['name'];?>
 <h1><?php echo $subject['Subject']['name'];?>

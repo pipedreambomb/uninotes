@@ -4,6 +4,9 @@
 <div class="container-fluid organizations view">
 <div class="row">
 <div class="span8 offset2">
+	<? echo $this->Html->link('Home', array('controller'=>'pages', 'action'=> 'display', 'home')); ?>
+&nbsp;&gt;&nbsp;
+<? echo $organization['Organization']['name']; ?>
 	<h1><?php echo $organization['Organization']['name']; ?>
 		<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $organization['Organization']['id']), array("class" => "btn btn-primary", 'id' => 'edit_org_btn')); ?></h1>
 	<div>

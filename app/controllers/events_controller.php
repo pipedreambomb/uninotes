@@ -20,9 +20,10 @@ class EventsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$event = $this->Event->read(null, $id);
+		$org = $this->Event->Subject->Organization->findById($event['Subject']['organization_id']);
 		$activity = $this->Event->findLinkedLog($id, $event, array('Link', 'Document'));
 		$isFollowing = $this->Event->User->isFollowing('Event', $this->Auth->user('id'), $id);
-		$this->set(compact('isFollowing', 'activity', 'event'));
+		$this->set(compact('isFollowing', 'activity', 'event', 'org'));
 	}
 
 	function add($id = null) {

@@ -5,7 +5,13 @@
 <div class="row">
 <div class="span8 offset2">
 <div class="events view">
-breadcrumbs go here > <?php echo $this->Html->link($event['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $event['Subject']['id'])); ?>
+<? echo $this->Html->link('Home', array('controller' => 'pages', 'action' => 'display', 'home')); ?>
+&nbsp;&gt;&nbsp;
+<? echo $this->Html->link($org['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $org['Organization']['id'])); ?>
+&nbsp;&gt;&nbsp;
+<?php echo $this->Html->link($event['Subject']['name'], array('controller' => 'subjects', 'action' => 'view', $event['Subject']['id'])); ?>
+&nbsp;&gt;&nbsp;
+<? echo $event['Event']['name']; ?>
 <h1>
 	<?php if($name = $event['Event']['name']) {
 		echo $name;
