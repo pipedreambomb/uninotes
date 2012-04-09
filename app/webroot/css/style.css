@@ -49,3 +49,7 @@ p.small_font {
 .carousel-caption p {
   color: #ffffff;
 }
+
+ul.users_list {
+	list-style: none;
+}

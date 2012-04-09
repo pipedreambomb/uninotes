@@ -70,23 +70,16 @@ class ListsHelper extends Helper {
 	}
 
 	function users($users) {
-		$out = "";
 
 		if (!empty($users)) {
-			$out .= "<table cellpadding = \"0\" cellspacing = \"0\">";
-			$i = 0;
+			?><ul class="users_list"><?
 			foreach ($users as $user) {
-				$class = null;
-				if ($i++ % 2 == 0) {
-					$class = ' class=\"altrow\"';
-				}
-				$out .= sprintf("<tr%s>", $class);
-				$out .= $this->Html->link(__($user['username'], true), array('controller' => 'users', 'action' => 'view', $user['id'])); 
-				$out .= "</tr>";
+				?><li><?
+				echo $this->Html->link(__($user['username'], true), array('controller' => 'users', 'action' => 'view', $user['id']));
+				?></li><?
 			}
-			$out .= "</table>";
+			?></ul><?
 		}
-		return $out;
 	
 	}
 
