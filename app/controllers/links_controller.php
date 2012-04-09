@@ -18,8 +18,7 @@ class LinksController extends AppController {
 	}
 
 	function view($id = null) {
-		$this->_checkExists($id);
-		$this->set('link', $this->Link->read(null, $id));
+		$this->redirect(array('action' => 'go', $id));
 	}
 
 	function add($type = null, $id = null) {
