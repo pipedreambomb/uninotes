@@ -1,4 +1,6 @@
 <div class="container">
+	<? echo $this->Html->link('Home', array('controller'=>'pages', 'action'=> 'display', 'home')); ?>
+&nbsp;&gt;&nbsp;About
 <div class="row"> 
 <div class="hero-unit"> 
 
