@@ -2,34 +2,41 @@
 <div class="row"> 
 <div class="hero-unit"> 
 <?
-   $this->Js->buffer(" $('.carousel').carousel({
-	        interval: 5000
-			    }).carousel('cycle');");
+$this->Js->buffer(" 
+	// Set scroll interval at 5 seconds
+	var itv = 5000
+//	$('.carousel').carousel({interval: itv}).carousel('cycle')
+	// Pause carousel if left/right slider button is clicked
+	$('.carousel-control').click(function() { $('.carousel').pause()})
+	");
 ?>
 	<h2>Welcome to UniNot.es!</h2>
 <div class="row-fluid">
-    <div id="myCarousel" class="carousel slide span10">
+    <div id="myCarousel" class="carousel slide">
     <!-- Carousel items -->
     <div class="carousel-inner">
 	    <div class="active item">
-		<? echo $this->Html->image("carousel-1.jpeg");  ?>
+		<? echo $this->Html->image("gdocs.png");  ?>
 		<div class="carousel-caption">
-			<h4>First Thumbnail label</h4>
-			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			<h4>Live note sessions</h4>
+			<p>Use the familiar Google Docs web app to share knowledge with your fellow learners in real time! Find sessions relevant to you and collaborate to crowd-source your learning experience.</p>
+<? echo $this->Html->link('Learn More', array('action' => 'display', 'about'), array('class' => 'btn btn-success pull-right')); ?>
 		</div>
 	    </div>
 	    <div class="item">
-		<? echo $this->Html->image("carousel-2.jpeg");  ?>
+		<? echo $this->Html->image("structure.png");  ?>
 		<div class="carousel-caption">
-			<h4>First Thumbnail label</h4>
-			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			<h4>Structured approach to learning</h4>
+			<p>No need to reinvent the wheel - notes are structured by organizations (universities, conferences, schools), subjects (topics, modules) and events.</p>
+<? echo $this->Html->link('Learn More', array('action' => 'display', 'about'), array('class' => 'btn btn-success pull-right')); ?>
 		</div>
 	    </div>
 	    <div class="item">
-		<? echo $this->Html->image("carousel-3.jpeg");  ?>
+		<? echo $this->Html->image("dashboard.png");  ?>
 		<div class="carousel-caption">
-			<h4>First Thumbnail label</h4>
-			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			<h4>Dashboard</h4>
+			<p>Keep track of updates to your followed organizations, subjects and events with a homepage customized to be relevant to you.</p>
+<? echo $this->Html->link('Learn More', array('action' => 'display', 'about'), array('class' => 'btn btn-success pull-right')); ?>
 		</div>
 	    </div>
     </div>
@@ -37,9 +44,6 @@
     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div>
-<div class="span2">
-<? echo $this->Html->link('Learn More', array('action' => 'display', 'about'), array('class' => 'btn btn-success')); ?>
-</div>
 </div>
 </div>
 <div class="span7">
