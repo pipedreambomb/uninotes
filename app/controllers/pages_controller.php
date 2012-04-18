@@ -83,7 +83,7 @@ class PagesController extends AppController {
 			//GN load log for all activities
 			$this->loadModel('Organization');
 			$activity = $this->Organization->findFullLog();
-			$organizations = $this->Organization->find('all', array('order' => 'Organization.id DESC'));
+			$organizations = $this->Organization->find('all', array('order' => 'Organization.id DESC', 'limit' => 50));
 			$this->set(compact('organizations', 'activity'));
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
