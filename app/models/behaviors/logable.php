@@ -161,7 +161,9 @@ class LogableBehavior extends ModelBehavior
 			} else {
 				$user = $Model->findById($activity['Log']['user_id']);
 			}
-			array_push($res, array_merge($activity, $user));
+			if (is_array($user)) {
+				array_push($res, array_merge($activity, $user));
+			}
 		}
 		return $res;
 	}
