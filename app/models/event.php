@@ -89,7 +89,6 @@ class Event extends AppModel {
 		if ($newDateTime = $this->data['Event']['newDateTime']) {
 			if ($timestamp = strtotime($this->data['Event']['newDateTime']))  {
 				$this->data['Event']['datetime'] = date('Y-m-d H:i:s', $timestamp);
-				debug($this->data);
 				$success = true;
 			}		
 		}
