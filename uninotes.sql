@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2012 at 05:26 PM
+-- Generation Time: Apr 19, 2012 at 04:24 PM
 -- Server version: 5.1.61
 -- PHP Version: 5.3.6-13ubuntu3.6
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `text` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `google_doc_id` (`google_doc_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `documents`
@@ -55,7 +55,8 @@ INSERT INTO `documents` (`id`, `google_doc_id`, `text`) VALUES
 (20, '1y2dpEQDVKbJiTRcgs2cAKXWb0ZkfTV6mBBJlGxVrA04', ''),
 (21, '1IhOnoV6fR_MkD1geamjTCC22svQWvG__n8s4e83rxx8', 'New Notes'),
 (22, '18N6tdAyO0xBh3FajwxHQblvaHqXFzBBpVPS0r-JCS9s', 'New Notes'),
-(23, '1ji0vebFkNrUyyRBlKzRLhGZwN0iUcCEBzfKxQReOisw', 'New Notes');
+(23, '1ji0vebFkNrUyyRBlKzRLhGZwN0iUcCEBzfKxQReOisw', 'New Notes'),
+(24, '1JSNiC-cIlN8n-opi9uSOcGLK7LehHxlTwk8N8pfAJfI', '');
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `documents_events` (
   `document_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `documents_events`
@@ -83,7 +84,8 @@ INSERT INTO `documents_events` (`id`, `document_id`, `event_id`) VALUES
 (8, 9, 1),
 (9, 10, 1),
 (10, 11, 1),
-(11, 12, 1);
+(11, 12, 1),
+(13, 24, 12);
 
 -- --------------------------------------------------------
 
@@ -147,14 +149,14 @@ CREATE TABLE IF NOT EXISTS `events` (
   `subject_id` bigint(20) NOT NULL,
   `address` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`id`, `name`, `datetime`, `duration`, `subject_id`, `address`) VALUES
-(1, 'Lecture 2 - Oracle OODB', '2011-11-22 11:46:00', '', 1, NULL),
+(1, 'Lecture 2 - Oracle OODB', '2011-11-22 11:46:00', '', 1, 'Harrogate International Centre, Harrogate'),
 (2, 'Intro lecture', '2012-03-15 10:00:00', '', 12, NULL),
 (3, 'Lesson 1: Lesson 1', '2012-03-27 19:37:00', '3 hours', 12, NULL),
 (4, 'Lesson 12: Lesson 12', '2012-03-27 19:37:00', '2', 12, NULL),
@@ -165,7 +167,8 @@ INSERT INTO `events` (`id`, `name`, `datetime`, `duration`, `subject_id`, `addre
 (9, 'lecture 6', '2012-04-20 10:00:00', '30 mins', 2, NULL),
 (10, '', '2012-04-07 00:00:00', '', 32, NULL),
 (11, 'Lesson 1: What is a football?', '2012-03-01 06:00:00', '4 hours', 33, 'Wembley Stadium, London'),
-(12, 'Lesson 2: Why use your feet?', '2012-03-16 07:00:00', '6 hours', 33, 'Wembley Stadium, London');
+(12, 'Lesson 2: Why use your feet?', '2012-03-16 07:00:00', '6 hours', 33, 'Wembley Stadium, London'),
+(13, '', '2012-04-19 00:00:00', '', 33, '');
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `text` varchar(200) DEFAULT NULL,
   `organization_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `links`
@@ -201,7 +204,9 @@ INSERT INTO `links` (`id`, `url`, `text`, `organization_id`) VALUES
 (36, 'http://www.skyrim.com', '', NULL),
 (35, 'http://www.example.com', '', NULL),
 (37, 'http://youtube.com', '', NULL),
-(38, 'http://www.bbc.co.uk', 'BBC Homepage', NULL);
+(38, 'http://www.bbc.co.uk', 'BBC Homepage', NULL),
+(40, 'http://www.nike.com', '', NULL),
+(41, 'http://www.oracle.com', 'Oracle Website', NULL);
 
 -- --------------------------------------------------------
 
@@ -214,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `links_events` (
   `link_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `links_events`
@@ -225,7 +230,8 @@ INSERT INTO `links_events` (`id`, `link_id`, `event_id`) VALUES
 (2, 31, 3),
 (3, 36, 1),
 (4, 37, 2),
-(5, 38, 2);
+(5, 38, 2),
+(6, 40, 12);
 
 -- --------------------------------------------------------
 
@@ -238,13 +244,14 @@ CREATE TABLE IF NOT EXISTS `links_subjects` (
   `link_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `links_subjects`
 --
 
 INSERT INTO `links_subjects` (`id`, `link_id`, `subject_id`) VALUES
+(12, 41, 1),
 (3, 3, 1),
 (8, 32, 12),
 (7, 12, 2),
@@ -286,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `user_id` int(11) NOT NULL,
   `change` varchar(5000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 --
 -- Dumping data for table `logs`
@@ -344,7 +351,19 @@ INSERT INTO `logs` (`id`, `title`, `created`, `description`, `model`, `model_id`
 (50, 'Lesson 1: What is a football?', '2012-04-05 17:20:33', 'Event "Lesson 1: What is a football?" (11) added by User "jambo81" (4).', 'Event', 11, 'add', 4, 'name, subject_id, duration, datetime'),
 (51, 'Lesson 1: What is a football?', '2012-04-05 17:21:53', 'Event "Lesson 1: What is a football?" (11) updated by User "jambo81" (4).', 'Event', 11, 'edit', 4, ''),
 (52, 'Lesson 1: What is a football?', '2012-04-05 17:22:08', 'Event "Lesson 1: What is a football?" (11) updated by User "jambo81" (4).', 'Event', 11, 'edit', 4, 'address'),
-(53, 'Lesson 2: Why use your feet?', '2012-04-05 17:26:07', 'Event "Lesson 2: Why use your feet?" (12) added by User "jambo81" (4).', 'Event', 12, 'add', 4, 'name, subject_id, duration, address, datetime');
+(53, 'Lesson 2: Why use your feet?', '2012-04-05 17:26:07', 'Event "Lesson 2: Why use your feet?" (12) added by User "jambo81" (4).', 'Event', 12, 'add', 4, 'name, subject_id, duration, address, datetime'),
+(54, '', '2012-04-05 20:32:35', 'Event "" (13) added by User "jambo81" (4).', 'Event', 13, 'add', 4, 'subject_id, datetime'),
+(55, 'http://www.nike.com', '2012-04-05 20:49:19', 'Link "http://www.nike.com" (40) added by User "jambo81" (4).', 'Link', 40, 'add', 4, 'url'),
+(56, 'Document (24)', '2012-04-05 21:26:36', 'Document (24) added by User "jambo81" (4).', 'Document', 24, 'add', 4, 'text, google_doc_id'),
+(57, 'Document (24)', '2012-04-05 21:26:41', 'Document (24) updated by User "jambo81" (4).', 'Document', 24, 'edit', 4, 'text'),
+(58, 'filmsonf', '2012-04-05 21:29:17', 'User "filmsonf" (7) added by System.', 'User', 7, 'add', 0, 'active, email, username, password'),
+(59, 'sdfdsfsd', '2012-04-05 21:29:38', 'User "sdfdsfsd" (8) added by System.', 'User', 8, 'add', 0, 'active, email, username, password'),
+(60, 'dsfosdfokpfdsok', '2012-04-05 21:31:50', 'User "dsfosdfokpfdsok" (9) added by System.', 'User', 9, 'add', 0, 'active, email, username, password'),
+(61, 'grefgdsgdsgopk', '2012-04-05 21:32:55', 'User "grefgdsgdsgopk" (10) added by System.', 'User', 10, 'add', 0, 'active, email, username, password'),
+(62, 'jambo81', '2012-04-08 19:48:47', 'User "jambo81" (4) updated by User "jambo81" (4).', 'User', 4, 'edit', 4, 'google_id'),
+(63, 'jambo81', '2012-04-08 19:48:56', 'User "jambo81" (4) updated by User "jambo81" (4).', 'User', 4, 'edit', 4, 'google_id'),
+(64, 'Lecture 2 - Oracle OODB', '2012-04-09 18:27:17', 'Event "Lecture 2 - Oracle OODB" (1) updated by User "jambo81" (4).', 'Event', 1, 'edit', 4, 'address'),
+(65, 'http://www.oracle.com', '2012-04-09 19:48:59', 'Link "http://www.oracle.com" (41) added by User "jambo81" (4).', 'Link', 41, 'add', 4, 'url, text');
 
 -- --------------------------------------------------------
 
@@ -435,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `google_id` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `users`
@@ -444,7 +463,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `active`, `email`, `google_id`) VALUES
 (4, 'jambo81', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'violentfemme@gmail.com', 'violentfemme@gmail.com'),
 (5, 'gojedfoj', '88f57d4cb0078fdcb9f575568110ea703b714ead', 1, 'vdsfovfdsjofds@dsfkpgfok.com', ''),
-(6, 'pipedreambomb', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'mail@georgenixon.co.uk', 'violentfemme@gmail.com');
+(6, 'pipedreambomb', '1e4dc440b82062cec6c3cec9deec67d5d8cd8fbe', 1, 'mail@georgenixon.co.uk', 'violentfemme@gmail.com'),
+(7, 'filmsonf', '777f1dd44e6409a19244d7559e11f4e53b003764', 1, 'mail@georgenixon.co.uk', ''),
+(8, 'sdfdsfsd', '68c5d97e242db6162a46af971de6f289cdf25fa6', 1, 'sdfdsfsd@Sdfdsfds.com', ''),
+(9, 'dsfosdfokpfdsok', '68c5d97e242db6162a46af971de6f289cdf25fa6', 1, 'dsfdsfdsf@DSfdsfds.com', ''),
+(10, 'grefgdsgdsgopk', '68c5d97e242db6162a46af971de6f289cdf25fa6', 1, 'fsdfksdfjdfs@DSfdsffds.com', '');
 
 -- --------------------------------------------------------
 
