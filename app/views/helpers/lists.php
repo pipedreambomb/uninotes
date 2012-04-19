@@ -110,7 +110,9 @@ class ListsHelper extends Helper {
 				echo strtolower($activity['Log']['model']) . " ";
 				$controller = Inflector::pluralize($activity['Log']['model']);
 				$name = $activity['Log']['title'] == null ? "(untitled)" : $activity['Log']['title'];
-				echo $this->Html->link($name, array('controller' => $controller, 'action' => 'view', $activity['Log']['model_id']));
+				// open Links in new window/tab
+				$options = $activity['Log']['model'] == 'Link' ? array('target' => '_blank') : array();
+				echo $this->Html->link($name, array('controller' => $controller, 'action' => 'view', $activity['Log']['model_id']), $options);
 				?>
 				<? echo " on " . $activity['Log']['created_nice_str']; ?>
 			</p>
