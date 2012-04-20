@@ -7,16 +7,24 @@ class MapHelper extends AppHelper {
 
 	public function locationMap($location) {
 
-		// Include Google's JS map api
-		$res = $this->Html->script('http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyDDX3HTPPu1laUnT7jpdJXQr7T1WyLtO78');
-		// include my map querying JS
-		$res .= $this->Html->script('map.js');
-		$this->_addCustomJs($location);
+		// only load map if address is over min length (otherwise is probably a room number or similar which can't be geo-coded
+		$MIN_LOCATION_LENGTH = 20;
+		if(strlen($location) >= $MIN_LOCATION_LENGTH) { 
+			$this->_loadJs($location);
+		}
+
 		// create <div> with no class and id=map_canvas
 		// contents is $location but if Javascript is enabled
 		// this will be overwritten with the interactive map
-		$res .= $this->Html->div('', $location, array('id' => 'map_canvas'));
-		return $res;
+		echo $this->Html->div('', $location, array('id' => 'map_canvas'));
+	}
+
+	private function _loadJs($location) {
+		// Include Google's JS map api
+		echo $this->Html->script('http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyDDX3HTPPu1laUnT7jpdJXQr7T1WyLtO78');
+		// include my map querying JS
+		echo $this->Html->script('map.js');
+		$this->_addCustomJs($location);
 	}
 
 	// create a custom JS script based on passed in location
