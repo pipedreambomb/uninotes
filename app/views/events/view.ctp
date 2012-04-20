@@ -26,8 +26,13 @@
 	if(isset($event['Event']['date_nice_str'])) {
 		echo "<p><strong>When: </strong>" . $event['Event']['date_nice_str'] . "</p>";
 	}
+	if(isset($event['Event']['address'])) {
+		echo "<p><strong>Where: </strong>" . $event['Event']['address'] . "</p>";
+	}
 	if(isset($event['Event']['duration'])) {
-		echo "<p><strong>Duration: </strong>" . $event['Event']['duration'] . "</p>";
+		if($event['Event']['duration'] != "") {
+			echo "<p><strong>Duration: </strong>" . $event['Event']['duration'] . "</p>";
+		}
 	}
 ?>
 </div>
