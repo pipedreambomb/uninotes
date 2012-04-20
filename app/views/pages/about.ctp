@@ -13,7 +13,7 @@
 					<? echo $this->Html->image("1234386_notebook_and_netbook.jpg");  ?>
 				</div>
 				<div class="span12">
-			<p>The goal of UniNot.es is to aid collaboration between students, conference attendees and academics, using live event-based note sessions saved for future revision.</p>
+			<p>The goal of UniNotes is to aid collaboration between students, conference attendees and academics, using live event-based note sessions saved for future revision.</p>
 				</div>
 			</div>
 		</div>

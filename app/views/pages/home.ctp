@@ -10,7 +10,7 @@ $this->Js->buffer("
 	$('.carousel-control').click(function() { $('.carousel').pause()})
 	");
 ?>
-	<h2>Welcome to UniNot.es!</h2>
+	<h2>Welcome to UniNotes!</h2>
 <div class="row-fluid">
     <div id="myCarousel" class="carousel slide">
     <!-- Carousel items -->

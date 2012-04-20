@@ -10,7 +10,7 @@
 <div>
 <? 	if($user['google_id'] == null) :
 ?><p>
-	Please note that <strong>in order to make changes</strong> to the document, you must have a Google account associated with your UniNot.es account. Click here to <? e($this->Html->Link('register', array('controller' => 'users', 'action' => 'add')));?>, or if you have already registered, change your <? e($this->Html->Link('settings', array('controller' => 'users', 'action' => 'dashboard')));?> to add a Google profile.
+	Please note that <strong>in order to make changes</strong> to the document, you must have a Google account associated with your UniNotes account. Click here to <? e($this->Html->Link('register', array('controller' => 'users', 'action' => 'add')));?>, or if you have already registered, change your <? e($this->Html->Link('settings', array('controller' => 'users', 'action' => 'dashboard')));?> to add a Google profile.
 </p>
 <p><?
 	echo $this->Html->link(
@@ -35,7 +35,7 @@ As you have associated the Google account <strong>"<? echo $user['google_id'] ?>
 	endif;
 ?>
 </p></div>
-	<p>Please be aware that you are now leaving this site and that UniNot.es accepts no responsibility for external websites and their content.</p>
+	<p>Please be aware that you are now leaving this site and that UniNotes accepts no responsibility for external websites and their content.</p>
 
 </div>
 <div id="gdocs_preview" class="span6">

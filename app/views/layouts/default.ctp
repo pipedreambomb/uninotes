@@ -22,7 +22,7 @@
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
-            <?php __('UniNot.es: One place for everyone\'s notes -- '); ?>
+            <?php __('UniNotes: One place for everyone\'s notes -- '); ?>
             <?php echo $title_for_layout; ?>
         </title>
         <?php
@@ -56,7 +56,7 @@
 		<div class="container">
 		    <ul class="nav">
                         <li>
-                            <? echo $this->Html->link('UniNot.es', array('controller' => '', 'action' => 'index'), array('class' => 'brand'));?>
+                            <? echo $this->Html->link('UniNotes', array('controller' => '', 'action' => 'index'), array('class' => 'brand'));?>
 			</li>
                         <li>    
                             <? echo $this->Html->link('About', array('controller' => 'pages', 'action' => 'display', 'about'));?>
