@@ -27,7 +27,9 @@
 		echo "<p><strong>When: </strong>" . $event['Event']['date_nice_str'] . "</p>";
 	}
 	if(isset($event['Event']['address'])) {
-		echo "<p><strong>Where: </strong>" . $event['Event']['address'] . "</p>";
+		if($event['Event']['address'] != "") {
+			echo "<p><strong>Where: </strong>" . $event['Event']['address'] . "</p>";
+		}
 	}
 	if(isset($event['Event']['duration'])) {
 		if($event['Event']['duration'] != "") {
