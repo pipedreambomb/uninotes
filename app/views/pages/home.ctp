@@ -5,9 +5,13 @@
 $this->Js->buffer(" 
 	// Set scroll interval at 5 seconds
 	var itv = 5000
-//	$('.carousel').carousel({interval: itv}).carousel('cycle')
-	// Pause carousel if left/right slider button is clicked
-	$('.carousel-control').click(function() { $('.carousel').pause()})
+	 ,  carousel = $('.carousel')
+	 carousel.carousel({interval: itv})
+	 	  .carousel('cycle')
+		  // Pause carousel if left/right slider button is clicked
+		  .one('click', function() { 
+		  	carousel.carousel('pause')
+		  })
 	");
 ?>
 	<h2>Welcome to UniNotes!</h2>
