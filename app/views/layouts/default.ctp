@@ -32,7 +32,7 @@
 	echo $this->Html->css('style');
 //        echo $this->Html->css('cake.generic');
 //        echo $this->Html->css('uninotes');
-	echo $this->Html->script('jquery-1.7.1.min.js'); // Include jQuery library > 
+	echo $this->Html->script('jquery-1.7.1.js'); // Include jQuery library > 
 	echo $this->Html->script('cakebootstrap.js');
 	echo $this->Html->script('bootstrap.js');
         echo $scripts_for_layout;
