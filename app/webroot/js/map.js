@@ -1,3 +1,6 @@
+// Please note that a lot of this code was adapted from Google 
+// sample code.
+ 
     var map = null;
     var geocoder = null;
 
