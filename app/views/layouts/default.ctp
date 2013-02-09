@@ -93,5 +93,13 @@
 <?php echo $content_for_layout; ?>
 
 <? echo $this->Js->writeBuffer(); ?>
+<div id="footer">
+<div class="container">
+<div class="span10 offset1"><p class="muted credit">
+	Uninotes developed by <a href="http://www.georgenixon.co.uk">George Nixon</a>. Source code is now available, see the <? echo $this->Html->link('Open Source', array('controller'=>'pages', 'action'=> 'display', 'open')); ?> page. <? echo $this->Html->image("cake.power.gif"); ?>
+</p>
+</div>
+</div>
+</div>
 </body>
 </html>

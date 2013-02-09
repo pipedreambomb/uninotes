@@ -43,10 +43,6 @@
 		</div>
 	</div>
 </div>
-<div class="span6">
-	<p>What you will see at this address is the current state of a final-year project by <a href="http://georgenixon.co.uk">George Nixon</a> of <a href="http://cardiff.ac.uk">Cardiff University</a>, begun October 2011. All rights reserved... for now. 
-</div>
-<div class="span6">The source code will be open-sourced in summer 2012, but for university reasons viz. collaboration, or in their parlance, plagiarism, it'll be off-limits until then. <a href="mailto:g@georgenixon.co.uk">Suggestions welcome</a>, however.</p>
 	
 </div>
 </div>
