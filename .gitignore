@@ -7,3 +7,6 @@ nbproject/
 *.swo
 *.ctp~
 *.js~
+/.buildpath
+/.project
+.settings/
