@@ -82,3 +82,7 @@ ul.users_list {
 .container .credit {
         margin: 20px 0;
 }
+
+.navbar-text {
+	margin-right: 120px;
+}
